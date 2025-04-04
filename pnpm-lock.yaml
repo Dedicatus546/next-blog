@@ -70,7 +70,7 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       '@types/node':
-        specifier: ^22.13.13
+        specifier: ^22.14.0
         version: 22.14.0
       '@types/nprogress':
         specifier: ^0.2.3
@@ -117,6 +117,9 @@ importers:
       markdown-it-anchor:
         specifier: ^9.2.0
         version: 9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.1.0)
+      markdown-it-async:
+        specifier: ^2.2.0
+        version: 2.2.0
       markdown-it-github-alerts:
         specifier: ^1.0.0
         version: 1.0.0(markdown-it@14.1.0)
