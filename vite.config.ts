@@ -7,8 +7,6 @@ import { fileURLToPath } from "node:url";
 import unocss from "unocss/vite";
 import autoImport from "unplugin-auto-import/vite";
 import components from "unplugin-vue-components/vite";
-import grayMatter from "gray-matter";
-import { readFileSync } from "node:fs";
 import inspect from "vite-plugin-inspect";
 import exclude from "vite-plugin-optimize-exclude";
 import markdown from "unplugin-vue-markdown/vite";
@@ -26,8 +24,13 @@ import { slugify } from "./scripts/slugify";
 // @ts-expect-error missing types
 import toc from "markdown-it-table-of-contents";
 import markdownItMagicLink from "markdown-it-magic-link";
+import { buildRouteMeta } from "./scripts/buildRouteMeta";
+import { markdownFrontmatterPlugin } from "./scripts/markdownFrontmatterPlugin";
+import { MarkdownItAsync } from "markdown-it-async";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+let markdownitAsyncInstance: MarkdownItAsync | undefined;
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -37,22 +40,6 @@ export default defineConfig({
   plugins: [
     vue({
       include: [/\.vue$/, /\.md$/],
-    }),
-    vueRouter({
-      extensions: [".vue", ".md"],
-      routesFolder: resolve(__dirname, "src", "pages"),
-      // logs: true,
-      extendRoute(route) {
-        const path = route.components.get("default");
-        if (!path) return;
-
-        if (path.endsWith(".md")) {
-          const { data } = grayMatter(readFileSync(path, "utf-8"));
-          route.addToMeta({
-            frontmatter: data,
-          });
-        }
-      },
     }),
     unocss(),
     autoImport({
@@ -69,10 +56,11 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     }),
     markdown({
+      wrapperClasses: "kan-doc",
       headEnabled: true,
-      exportFrontmatter: false,
-      exposeFrontmatter: false,
-      exposeExcerpt: false,
+      exportFrontmatter: true,
+      exposeFrontmatter: true,
+      exposeExcerpt: true,
       markdownItOptions: {
         quotes: "\"\"''",
       },
@@ -114,10 +102,9 @@ export default defineConfig({
         });
 
         md.use(toc, {
-          includeLevel: [1, 2, 3, 4],
+          includeLevel: [1, 2, 3, 4, 5, 6],
           slugify,
-          containerHeaderHtml:
-            '<div class="table-of-contents-anchor"><div class="i-ri-menu-2-fill" /></div>',
+          containerClass: "mujika-toc-container",
         });
 
         md.use(markdownItMagicLink, {
@@ -180,6 +167,10 @@ export default defineConfig({
         });
 
         md.use(gitHubAlerts);
+
+        md.use(markdownFrontmatterPlugin);
+
+        markdownitAsyncInstance = md;
       },
       // frontmatterPreprocess(frontmatter, options, id, defaults) {
       //   (() => {
@@ -200,6 +191,17 @@ export default defineConfig({
       //   })();
       //   const head = defaults(frontmatter, options);
       //   return { head, frontmatter };
+      // },
+    }),
+    vueRouter({
+      extensions: [".vue", ".md"],
+      routesFolder: resolve(__dirname, "src", "pages"),
+      logs: true,
+      async extendRoute(route) {
+        await buildRouteMeta(route, markdownitAsyncInstance!);
+      },
+      // async beforeWriteFiles(rootRoute) {
+      // rewriteRoutePath(rootRoute);
       // },
     }),
     inspect(),
