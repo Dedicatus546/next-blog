@@ -15,7 +15,7 @@ const emits = defineEmits<{
 }>();
 
 const pageCount = computed(() => {
-  return Math.max(1, Math.ceil(total / pageSize));
+  return pageSize === 0 ? 0 : Math.max(1, Math.ceil(total / pageSize));
 });
 
 const pageChange = (page: number) => {

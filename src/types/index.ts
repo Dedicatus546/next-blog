@@ -1,25 +1,31 @@
-export interface Frontmatter {
+export enum PageType {
+  MD = "md",
+  TAG = "tag",
+  ARCHIVE = "archive",
+  INDEX = "index",
+}
+
+export interface MarkdownPage {
+  path: string;
   title: string;
+  excerpt: string;
+  hash: string;
   key: number;
-  date: string;
-  updated: string;
+  date: number;
+  updated: number;
   tags: Array<string>;
   categories: Array<string>;
+  type: PageType.MD;
 }
 
-export interface PostListItem extends Frontmatter {
-  id: number;
-  excerpt?: string;
-  url: string;
+export interface IndexPage {
+  type: PageType.INDEX;
+  todo: unknown;
 }
 
-export interface PostDetail extends PostListItem {
-  prev?: {
-    url: string;
-    text: string;
-  };
-  next?: {
-    url: string;
-    text: string;
-  };
+// TODO
+export interface OtherPage {
+  type: PageType;
 }
+
+export type Page = IndexPage | MarkdownPage | OtherPage;

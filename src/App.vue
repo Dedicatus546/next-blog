@@ -1,27 +1,30 @@
 <script setup lang="ts">
-// import MujikaAside from "./components/MujikaAside.vue";
 import MujikaFooter from "./components/MujikaFooter.vue";
 import MujikaHeader from "./components/MujikaHeader.vue";
+import { PageType } from "./types";
 </script>
 
 <template>
   <div class="mujika" min-h="100vh" flex="~ col" bg="#fafafa">
     <MujikaHeader />
-    <div
+    <main
       class="mujika-home"
+      flex="grow"
       mx="auto"
       min-h="0"
-      my-4
-      flex="~ grow"
-      gap-4
-      w="[calc(100vw-20px)]"
-      xl:w="[calc(80rem-20px)]"
+      p-2
+      w-full
+      un-2xl:w="[calc(96rem-var(--spacing)*2)]"
     >
-      <main>
-        <RouterView />
-      </main>
-      <!-- <MujikaAside /> -->
-    </div>
+      <RouterView>
+        <template #default="{ Component, route }">
+          <MujikaPostDetail v-if="route.meta?.page.type === PageType.MD">
+            <component :is="Component" />
+          </MujikaPostDetail>
+          <component v-else :is="Component" />
+        </template>
+      </RouterView>
+    </main>
     <MujikaFooter />
   </div>
 </template>

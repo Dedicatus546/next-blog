@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { useStore } from "@/stores/useStore";
+import { useRootStore } from "@/stores/useRootStore";
 
 import MujikaPagination from "./MujikaPagination.vue";
 import MujikaPostListItem from "./MujikaPostListItem.vue";
 
-const store = useStore();
+const store = useRootStore();
 
 const { onPageChange, state } = store;
 const { renderList } = storeToRefs(store);
 </script>
 
 <template>
-  <MujikaPostListItem :post="item" v-for="item of renderList" :key="item.id" />
+  <MujikaPostListItem :post="item" v-for="item of renderList" :key="item.key" />
   <MujikaPagination
     :page="state.pagination.page"
     :page-size="state.pagination.pageSize"

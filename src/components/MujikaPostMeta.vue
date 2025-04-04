@@ -1,11 +1,18 @@
 <script setup lang="ts">
-defineProps<{
-  meta: {
-    date: string;
-    updated: string;
-    categories: string[];
-  };
+import { format, fromUnixTime } from "date-fns";
+
+import type { MarkdownPage } from "@/types";
+
+const { page } = defineProps<{
+  page: MarkdownPage;
 }>();
+
+const date = computed(() =>
+  format(fromUnixTime(page.date), "yyyy-MM-dd HH:mm"),
+);
+const updated = computed(() =>
+  format(fromUnixTime(page.updated), "yyyy-MM-dd HH:mm"),
+);
 </script>
 
 <template>
@@ -16,14 +23,14 @@ defineProps<{
           <i class="i-fa6-regular:calendar" mr-1></i>
           发表于
         </span>
-        <span ml-1 inline-block>{{ meta.date }}</span>
+        <span ml-1 inline-block>{{ date }}</span>
       </div>
       <div>
         <span>
           <i class="i-fa6-regular:calendar-check" mr-1></i>
           更新于
         </span>
-        <span ml-1 inline-block>{{ meta.updated }}</span>
+        <span ml-1 inline-block>{{ updated }}</span>
       </div>
       <div>
         <span>
@@ -34,7 +41,7 @@ defineProps<{
           ml-1
           inline-block
           :href="`/category/${item}`"
-          v-for="item of meta.categories"
+          v-for="item of page.categories"
           :key="item"
         >
           {{ item }}
