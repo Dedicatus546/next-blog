@@ -19,10 +19,18 @@ declare module 'vue-router/auto-routes' {
    */
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-6（译）': RouteRecordInfo<'/TypeScript-5-6（译）', '/10e09992a7cf', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-2（译）': RouteRecordInfo<'/TypeScript-5-2（译）', '/61cdd2892f5f', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-8（译）': RouteRecordInfo<'/TypeScript-5-8（译）', '/7dc7c776f888', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-5（译）': RouteRecordInfo<'/TypeScript-5-5（译）', '/930e41b56235', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-4（译）': RouteRecordInfo<'/TypeScript-5-4（译）', '/a72ebe7efc58', Record<never, never>, Record<never, never>>,
     '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
     '/archive': RouteRecordInfo<'/archive', '/archive', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-1（译）': RouteRecordInfo<'/TypeScript-5-1（译）', '/c7f09b2fdb66', Record<never, never>, Record<never, never>>,
     '/category': RouteRecordInfo<'/category', '/category', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-0（译）': RouteRecordInfo<'/TypeScript-5-0（译）', '/d174a34ab7a5', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-3（译）': RouteRecordInfo<'/TypeScript-5-3（译）', '/d8804bf6ed5f', Record<never, never>, Record<never, never>>,
+    '/TypeScript-5-7（译）': RouteRecordInfo<'/TypeScript-5-7（译）', '/f87197598d02', Record<never, never>, Record<never, never>>,
     '/tag': RouteRecordInfo<'/tag', '/tag', Record<never, never>, Record<never, never>>,
-    '/TypeScript-5-0（译）': RouteRecordInfo<'/TypeScript-5-0（译）', '/TypeScript-5-0（译）', Record<never, never>, Record<never, never>>,
   }
 }
