@@ -15,7 +15,7 @@ export default defineConfig([
     "auto-import.d.ts",
   ]),
   {
-    files: ["src/**/*.{ts,vue}"],
+    files: ["src/**/*.{ts,vue}", "scripts/**/*.{ts}"],
     plugins: {
       js,
       "simple-import-sort": eslintPluginSimpleImportSort,
@@ -30,7 +30,12 @@ export default defineConfig([
       "simple-import-sort/exports": "error",
     },
   },
-  tseslint.configs.recommended,
+  {
+    extends: [tseslint.configs.recommended],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
   {
     files: ["src/**/*.vue"],
     extends: [pluginVue.configs["flat/essential"]],
