@@ -23,15 +23,23 @@
     }
 
     .header-anchor {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-weight: 500;
+      user-select: none;
+      opacity: 0;
+      text-decoration: none;
+      transition:
+        color 0.25s,
+        opacity 0.25s;
+    }
+
+    .header-anchor {
       &:focus {
         opacity: 1;
       }
     }
-
-    // .header-anchor & > code {
-    //   font-size: 0.9em;
-    //   color: #000;
-    // }
   }
 
   h1 {
@@ -61,24 +69,6 @@
     letter-spacing: -0.01em;
     line-height: 24px;
     font-size: 18px;
-  }
-
-  .header-anchor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: -0.87em;
-    font-weight: 500;
-    user-select: none;
-    opacity: 0;
-    text-decoration: none;
-    transition:
-      color 0.25s,
-      opacity 0.25s;
-
-    &:before {
-      content: var(--vp-header-anchor-symbol);
-    }
   }
 
   p,

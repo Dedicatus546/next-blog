@@ -14,7 +14,7 @@ export const useRootStore = defineStore("root-store", () => {
     list: [],
     pagination: {
       page: 1,
-      pageSize: 0,
+      pageSize: 10,
       total: 0,
     },
   });
@@ -28,10 +28,13 @@ export const useRootStore = defineStore("root-store", () => {
       .sort((a, b) => {
         const { date: aDate } = a.meta.page as MarkdownPage;
         const { date: bDate } = b.meta.page as MarkdownPage;
-        return new Date(aDate).getTime() - new Date(bDate).getTime();
+        return new Date(bDate).getTime() - new Date(aDate).getTime();
       })
       .map((item) => item.meta.page as MarkdownPage);
-    state.pagination.pageSize = Math.min(3, state.list.length);
+    state.pagination.pageSize = Math.min(
+      state.pagination.pageSize,
+      state.list.length,
+    );
     state.pagination.total = state.list.length;
   };
 

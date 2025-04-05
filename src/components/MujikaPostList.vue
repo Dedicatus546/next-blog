@@ -11,7 +11,11 @@ const { renderList } = storeToRefs(store);
 </script>
 
 <template>
-  <MujikaPostListItem :post="item" v-for="item of renderList" :key="item.key" />
+  <MujikaPostListItem
+    :post="item"
+    v-for="item of renderList"
+    :key="item.hash"
+  />
   <MujikaPagination
     :page="state.pagination.page"
     :page-size="state.pagination.pageSize"

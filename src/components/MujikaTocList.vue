@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type TocItem } from "@/composables/usePostTocList";
+import { navigate } from "@/utils/headerAnchor";
 
 const { prefix = "" } = defineProps<{
   list: Array<TocItem>;
@@ -12,15 +13,7 @@ const onAnchorClick = (e: MouseEvent) => {
   const url = new URL(href);
   const { hash } = url;
   history.replaceState({}, "", hash);
-  const el = document.querySelector(decodeURIComponent(hash));
-  if (el) {
-    const rect = el.getBoundingClientRect();
-    const y = window.scrollY + rect.top - 20;
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-  }
+  navigate();
 };
 </script>
 

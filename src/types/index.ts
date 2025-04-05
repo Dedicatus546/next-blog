@@ -9,6 +9,7 @@ export interface MarkdownPage {
   path: string;
   title: string;
   excerpt: string;
+  wordCount: number;
   hash: string;
   key: number;
   date: number;

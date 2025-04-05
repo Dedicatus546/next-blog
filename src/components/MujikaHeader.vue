@@ -12,7 +12,7 @@
     <RouterLink to="/" flex gap-4 items-center>
       <img w="40px" aspect-ratio-square src="/logo.svg" alt="恋の歌的logo" />
     </RouterLink>
-    <div flex gap-6>
+    <!-- <div flex gap-6>
       <RouterLink to="/">
         <i class="i-mi:home"></i>
         首页
@@ -33,7 +33,7 @@
       <a href="https://github.com/Dedicatus546" target="_blank">
         <i class="i-logos:github-icon"></i>
       </a>
-    </div>
+    </div> -->
   </header>
 </template>
 

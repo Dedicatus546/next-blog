@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import { useStore } from "@/stores/useRootStore";
+import { useRootStore } from "@/stores/useRootStore";
 
-const store = useStore();
+const rootStore = useRootStore();
 </script>
 
 <template>
   <div flex gap-2 items-center>
     <div flex flex-col items-center>
       <div>文章</div>
-      <div>{{ store.state.list.length }}</div>
+      <div>{{ rootStore.state.list.length }}</div>
     </div>
     <div flex flex-col items-center>
       <div>分类</div>
-      <div>{{ store.categoryList.length }}</div>
+      <div>{{ rootStore.categoryList.length }}</div>
     </div>
     <div flex flex-col items-center>
       <div>标签</div>
-      <div>{{ store.tagList.length }}</div>
+      <div>{{ rootStore.tagList.length }}</div>
     </div>
   </div>
 </template>

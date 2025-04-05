@@ -8,18 +8,24 @@ const { renderList } = storeToRefs(store);
 </script>
 
 <template>
-  <div flex="~ col" gap-2>
-    <MujikaPostListItem
-      :post="item"
-      v-for="item of renderList"
-      :key="item.key"
-    />
-    <MujikaPagination
-      :page="state.pagination.page"
-      :page-size="state.pagination.pageSize"
-      :total="state.pagination.total"
-      @page-change="onPageChange"
-    />
+  <div flex gap-2 items-start>
+    <MujikaAuthorAside />
+    <div flex="~ col grow" gap-2>
+      <MujikaPostListItem
+        :post="item"
+        v-for="item of renderList"
+        :key="item.hash"
+      />
+      <MujikaCard>
+        <MujikaPagination
+          :page="state.pagination.page"
+          :page-size="state.pagination.pageSize"
+          :total="state.pagination.total"
+          @page-change="onPageChange"
+        />
+      </MujikaCard>
+    </div>
+    <!-- <MujikaIndexAside /> -->
   </div>
 </template>
 
