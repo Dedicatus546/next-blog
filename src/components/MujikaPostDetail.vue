@@ -11,7 +11,9 @@ const { meta } = useRoute();
 const page = computed(() => meta.page as MarkdownPage);
 const { prev, next } = usePostPrevAndNextPost(() => page.value.hash);
 
-useEventListener(window, "hashchange", navigate);
+useEventListener(window, "hashchange", () => {
+  navigate();
+});
 const mujikaDocContentRef = useTemplateRef("mujikaDocContentRef");
 useEventListener(mujikaDocContentRef, "click", (e) => {
   const target = e.target as HTMLElement;
@@ -40,15 +42,25 @@ useEventListener(mujikaDocContentRef, "click", (e) => {
     }
   }
 });
+
+onMounted(() => {
+  const doNavigate = () => {
+    if (!navigate()) {
+      setTimeout(doNavigate, 100);
+    }
+  };
+  setTimeout(doNavigate, 1);
+});
 </script>
 
 <template>
   <div flex gap-2 items-start>
     <div flex="~ col grow" gap-2 min-w-0>
       <MujikaCard :padding-level="2">
-        <div flex="~ col" gap-4>
+        <div flex="~ col" mb-4 gap-4>
           <h1 text="34px center">{{ page.title }}</h1>
         </div>
+        <MujikaPostMeta :page="page"></MujikaPostMeta>
         <div class="mujika-doc-content" ref="mujikaDocContentRef">
           <slot />
         </div>

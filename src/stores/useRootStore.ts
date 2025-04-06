@@ -26,9 +26,12 @@ export const useRootStore = defineStore("root-store", () => {
     state.list = routeList
       .filter((item) => item.meta.page.type === PageType.MD)
       .sort((a, b) => {
-        const { date: aDate } = a.meta.page as MarkdownPage;
-        const { date: bDate } = b.meta.page as MarkdownPage;
-        return new Date(bDate).getTime() - new Date(aDate).getTime();
+        const aPage = a.meta.page as MarkdownPage;
+        const bPage = b.meta.page as MarkdownPage;
+        if (bPage.top - aPage.top !== 0) {
+          return bPage.top - aPage.top;
+        }
+        return new Date(bPage.date).getTime() - new Date(aPage.date).getTime();
       })
       .map((item) => item.meta.page as MarkdownPage);
     state.pagination.pageSize = Math.min(

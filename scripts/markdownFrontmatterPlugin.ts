@@ -17,6 +17,7 @@ export const markdownFrontmatterPlugin = (md: MarkdownItAsync) => {
       // allow providing default value
       ...env.frontmatter,
       ...data,
+      wordCount: content.length,
     };
     env.excerpt = render(excerpt, { ...env });
     return render(content, env);

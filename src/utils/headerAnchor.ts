@@ -8,6 +8,7 @@ export const navigate = () => {
         top: y,
         behavior: "smooth",
       });
+      return true;
     }
   }
 };

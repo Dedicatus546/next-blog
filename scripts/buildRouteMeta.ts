@@ -25,6 +25,7 @@ export const buildRouteMeta = async (
     });
     const markdownPage = await normalizeMarkdownPageMeta(
       path,
+      file,
       data,
       excerpt,
       markdownItAsyncInstance,
@@ -57,6 +58,7 @@ export const buildRouteMeta = async (
 
 const normalizeMarkdownPageMeta = async (
   path: string,
+  content: string,
   frontmatter: Record<string, any>,
   excerpt: string | undefined,
   markdownItAsyncInstance: MarkdownItAsync,
@@ -71,6 +73,8 @@ const normalizeMarkdownPageMeta = async (
   return {
     path: "",
     title: frontmatter.title,
+    top: frontmatter.top ?? 0,
+    wordCount: getWordCount(content),
     excerpt: markdownItAsyncInstance.render(excerpt ?? ""),
     hash,
     key: frontmatter.key,
@@ -80,4 +84,17 @@ const normalizeMarkdownPageMeta = async (
     categories: frontmatter.categories ?? [],
     type: PageType.MD,
   };
+};
+
+const getWordCount = (content: string) => {
+  const linkRegex = /\]\((.*?)\)/g;
+  let wordCount = 0;
+  // 按行处理
+  const lines = content.split(/\r?\n/);
+  for (const line of lines) {
+    const processedLine = line.replaceAll(linkRegex, "]");
+    const words = processedLine.match(/(\p{Script=Han}|[a-zA-Z]+)/gu) ?? [];
+    wordCount += words.length;
+  }
+  return wordCount;
 };
