@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { usePostPrevAndNextPost } from "@/composables/usePostPrevAndNextPost";
-import MujikaGitTalk from "@/packages/MujikaGitTalk/MujikaGitTalk.vue";
 import type { MarkdownPage } from "@/types";
 import { navigate } from "@/utils/headerAnchor";
 
@@ -68,7 +67,7 @@ onMounted(() => {
           <div v-for="item of page.tags" :key="item">#{{ item }}</div>
         </div>
       </MujikaCard>
-      <MujikaCard :padding-level="2">
+      <MujikaCard :padding-level="2" v-if="prev || next">
         <div flex>
           <RouterLink :to="prev.path" v-if="prev">
             <i class="i-mi:chevron-left" mr-1></i>
