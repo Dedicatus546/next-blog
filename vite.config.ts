@@ -88,8 +88,8 @@ export default defineConfig({
         md.use(anchor, {
           slugify,
           permalink: anchor.permalink.linkInsideHeader({
-            symbol: "#",
-            renderAttrs: () => ({ "aria-hidden": "true" }),
+            symbol: "🔗",
+            // renderAttrs: () => ({ "aria-hidden": "true" }),
           }),
         });
 
@@ -195,7 +195,10 @@ export default defineConfig({
     }),
     vueRouter({
       extensions: [".vue", ".md"],
-      routesFolder: resolve(__dirname, "src", "pages"),
+      routesFolder: [
+        resolve(__dirname, "src", "pages"),
+        resolve(__dirname, "src", "test"),
+      ],
       logs: true,
       async extendRoute(route) {
         await buildRouteMeta(route, markdownitAsyncInstance!);
