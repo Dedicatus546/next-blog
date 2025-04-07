@@ -1,0 +1,716 @@
+.haruhikage-doc {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5;
+  color: #24292e;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.haruhikage-doc .pl-c {
+  color: #6a737d;
+}
+
+.haruhikage-doc .pl-c1,
+.haruhikage-doc .pl-s .pl-v {
+  color: #005cc5;
+}
+
+.haruhikage-doc .pl-e,
+.haruhikage-doc .pl-en {
+  color: #6f42c1;
+}
+
+.haruhikage-doc .pl-smi,
+.haruhikage-doc .pl-s .pl-s1 {
+  color: #24292e;
+}
+
+.haruhikage-doc .pl-ent {
+  color: #22863a;
+}
+
+.haruhikage-doc .pl-k {
+  color: #d73a49;
+}
+
+.haruhikage-doc .pl-s,
+.haruhikage-doc .pl-pds,
+.haruhikage-doc .pl-s .pl-pse .pl-s1,
+.haruhikage-doc .pl-sr,
+.haruhikage-doc .pl-sr .pl-cce,
+.haruhikage-doc .pl-sr .pl-sre,
+.haruhikage-doc .pl-sr .pl-sra {
+  color: #032f62;
+}
+
+.haruhikage-doc .pl-v,
+.haruhikage-doc .pl-smw {
+  color: #e36209;
+}
+
+.haruhikage-doc .pl-bu {
+  color: #b31d28;
+}
+
+.haruhikage-doc .pl-ii {
+  color: #fafbfc;
+  background-color: #b31d28;
+}
+
+.haruhikage-doc .pl-c2 {
+  color: #fafbfc;
+  background-color: #d73a49;
+}
+
+.haruhikage-doc .pl-c2::before {
+  content: "^M";
+}
+
+.haruhikage-doc .pl-sr .pl-cce {
+  font-weight: bold;
+  color: #22863a;
+}
+
+.haruhikage-doc .pl-ml {
+  color: #735c0f;
+}
+
+.haruhikage-doc .pl-mh,
+.haruhikage-doc .pl-mh .pl-en,
+.haruhikage-doc .pl-ms {
+  font-weight: bold;
+  color: #005cc5;
+}
+
+.haruhikage-doc .pl-mi {
+  font-style: italic;
+  color: #24292e;
+}
+
+.haruhikage-doc .pl-mb {
+  font-weight: bold;
+  color: #24292e;
+}
+
+.haruhikage-doc .pl-md {
+  color: #b31d28;
+  background-color: #ffeef0;
+}
+
+.haruhikage-doc .pl-mi1 {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.haruhikage-doc .pl-mc {
+  color: #e36209;
+  background-color: #ffebda;
+}
+
+.haruhikage-doc .pl-mi2 {
+  color: #f6f8fa;
+  background-color: #005cc5;
+}
+
+.haruhikage-doc .pl-mdr {
+  font-weight: bold;
+  color: #6f42c1;
+}
+
+.haruhikage-doc .pl-ba {
+  color: #586069;
+}
+
+.haruhikage-doc .pl-sg {
+  color: #959da5;
+}
+
+.haruhikage-doc .pl-corl {
+  text-decoration: underline;
+  color: #032f62;
+}
+
+.haruhikage-doc .octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
+}
+
+.haruhikage-doc a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+.haruhikage-doc a:active,
+.haruhikage-doc a:hover {
+  outline-width: 0;
+}
+
+.haruhikage-doc strong {
+  font-weight: inherit;
+}
+
+.haruhikage-doc strong {
+  font-weight: bolder;
+}
+
+.haruhikage-doc h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.haruhikage-doc img {
+  border-style: none;
+}
+
+.haruhikage-doc svg:not(:root) {
+  overflow: hidden;
+}
+
+.haruhikage-doc code,
+.haruhikage-doc kbd,
+.haruhikage-doc pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.haruhikage-doc hr {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+.haruhikage-doc input {
+  font: inherit;
+  margin: 0;
+}
+
+.haruhikage-doc input {
+  overflow: visible;
+}
+
+.haruhikage-doc [type="checkbox"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.haruhikage-doc * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.haruhikage-doc input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.haruhikage-doc a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.haruhikage-doc a:hover {
+  text-decoration: underline;
+}
+
+.haruhikage-doc strong {
+  font-weight: 600;
+}
+
+.haruhikage-doc hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+}
+
+.haruhikage-doc hr::before {
+  display: table;
+  content: "";
+}
+
+.haruhikage-doc hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.haruhikage-doc table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.haruhikage-doc td,
+.haruhikage-doc th {
+  padding: 0;
+}
+
+.haruhikage-doc h1,
+.haruhikage-doc h2,
+.haruhikage-doc h3,
+.haruhikage-doc h4,
+.haruhikage-doc h5,
+.haruhikage-doc h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.haruhikage-doc h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.haruhikage-doc h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.haruhikage-doc h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.haruhikage-doc h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.haruhikage-doc h5 {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.haruhikage-doc h6 {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.haruhikage-doc p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.haruhikage-doc blockquote {
+  margin: 0;
+}
+
+.haruhikage-doc ul,
+.haruhikage-doc ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.haruhikage-doc ol ol,
+.haruhikage-doc ul ol {
+  list-style-type: lower-roman;
+}
+
+.haruhikage-doc ul ul ol,
+.haruhikage-doc ul ol ol,
+.haruhikage-doc ol ul ol,
+.haruhikage-doc ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.haruhikage-doc dd {
+  margin-left: 0;
+}
+
+.haruhikage-doc code {
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.haruhikage-doc pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font:
+    12px "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    Courier,
+    monospace;
+}
+
+.haruhikage-doc .octicon {
+  vertical-align: text-bottom;
+}
+
+.haruhikage-doc .pl-0 {
+  padding-left: 0 !important;
+}
+
+.haruhikage-doc .pl-1 {
+  padding-left: 4px !important;
+}
+
+.haruhikage-doc .pl-2 {
+  padding-left: 8px !important;
+}
+
+.haruhikage-doc .pl-3 {
+  padding-left: 16px !important;
+}
+
+.haruhikage-doc .pl-4 {
+  padding-left: 24px !important;
+}
+
+.haruhikage-doc .pl-5 {
+  padding-left: 32px !important;
+}
+
+.haruhikage-doc .pl-6 {
+  padding-left: 40px !important;
+}
+
+.haruhikage-doc::before {
+  display: table;
+  content: "";
+}
+
+.haruhikage-doc::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.haruhikage-doc > *:first-child {
+  margin-top: 0 !important;
+}
+
+.haruhikage-doc > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.haruhikage-doc a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.haruhikage-doc .anchor {
+  float: left;
+  padding-right: 4px;
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.haruhikage-doc .anchor:focus {
+  outline: none;
+}
+
+.haruhikage-doc p,
+.haruhikage-doc blockquote,
+.haruhikage-doc ul,
+.haruhikage-doc ol,
+.haruhikage-doc dl,
+.haruhikage-doc table,
+.haruhikage-doc pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.haruhikage-doc hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+.haruhikage-doc blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+
+.haruhikage-doc blockquote > :first-child {
+  margin-top: 0;
+}
+
+.haruhikage-doc blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.haruhikage-doc kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 #959da5;
+  box-shadow: inset 0 -1px 0 #959da5;
+}
+
+.haruhikage-doc h1,
+.haruhikage-doc h2,
+.haruhikage-doc h3,
+.haruhikage-doc h4,
+.haruhikage-doc h5,
+.haruhikage-doc h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.haruhikage-doc h1 .octicon-link,
+.haruhikage-doc h2 .octicon-link,
+.haruhikage-doc h3 .octicon-link,
+.haruhikage-doc h4 .octicon-link,
+.haruhikage-doc h5 .octicon-link,
+.haruhikage-doc h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.haruhikage-doc h1:hover .anchor,
+.haruhikage-doc h2:hover .anchor,
+.haruhikage-doc h3:hover .anchor,
+.haruhikage-doc h4:hover .anchor,
+.haruhikage-doc h5:hover .anchor,
+.haruhikage-doc h6:hover .anchor {
+  text-decoration: none;
+}
+
+.haruhikage-doc h1:hover .anchor .octicon-link,
+.haruhikage-doc h2:hover .anchor .octicon-link,
+.haruhikage-doc h3:hover .anchor .octicon-link,
+.haruhikage-doc h4:hover .anchor .octicon-link,
+.haruhikage-doc h5:hover .anchor .octicon-link,
+.haruhikage-doc h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.haruhikage-doc h1 {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+}
+
+.haruhikage-doc h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+}
+
+.haruhikage-doc h3 {
+  font-size: 1.25em;
+}
+
+.haruhikage-doc h4 {
+  font-size: 1em;
+}
+
+.haruhikage-doc h5 {
+  font-size: 0.875em;
+}
+
+.haruhikage-doc h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+.haruhikage-doc ul,
+.haruhikage-doc ol {
+  padding-left: 2em;
+}
+
+.haruhikage-doc ul ul,
+.haruhikage-doc ul ol,
+.haruhikage-doc ol ol,
+.haruhikage-doc ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.haruhikage-doc li > p {
+  margin-top: 16px;
+}
+
+.haruhikage-doc li + li {
+  margin-top: 0.25em;
+}
+
+.haruhikage-doc dl {
+  padding: 0;
+}
+
+.haruhikage-doc dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.haruhikage-doc dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.haruhikage-doc table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+
+.haruhikage-doc table th {
+  font-weight: 600;
+}
+
+.haruhikage-doc table th,
+.haruhikage-doc table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+.haruhikage-doc table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+.haruhikage-doc table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+.haruhikage-doc img {
+  max-width: 100%;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+
+.haruhikage-doc code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+.haruhikage-doc code::before,
+.haruhikage-doc code::after {
+  letter-spacing: -0.2em;
+  content: "\A0";
+}
+
+.haruhikage-doc pre {
+  word-wrap: normal;
+}
+
+.haruhikage-doc pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.haruhikage-doc .highlight {
+  margin-bottom: 16px;
+}
+
+.haruhikage-doc .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.haruhikage-doc .highlight pre,
+.haruhikage-doc pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
+}
+
+.haruhikage-doc pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.haruhikage-doc pre code::before,
+.haruhikage-doc pre code::after {
+  content: normal;
+}
+
+.haruhikage-doc .full-commit .btn-outline:not(:disabled):hover {
+  color: #005cc5;
+  border-color: #005cc5;
+}
+
+.haruhikage-doc kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font:
+    11px "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    Courier,
+    monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #d1d5da;
+  border-bottom-color: #c6cbd1;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 #c6cbd1;
+  box-shadow: inset 0 -1px 0 #c6cbd1;
+}
+
+.haruhikage-doc :checked + .radio-label {
+  position: relative;
+  z-index: 1;
+  border-color: #0366d6;
+}
+
+.haruhikage-doc .task-list-item {
+  list-style-type: none;
+}
+
+.haruhikage-doc .task-list-item + .task-list-item {
+  margin-top: 3px;
+}
+
+.haruhikage-doc .task-list-item input {
+  margin: 0 0.2em 0.25em -1.6em;
+  vertical-align: middle;
+}
+
+.haruhikage-doc hr {
+  border-bottom-color: #eee;
+}

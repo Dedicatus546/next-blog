@@ -1,12 +1,60 @@
 <script setup lang="ts">
+import {
+  getAccessTokenApi,
+  getIssueByLabelApi,
+  getUserInfoApi,
+  setOctokitAuth,
+} from "@/apis/githubApi";
 import MujikaCard from "@/components/MujikaCard.vue";
-import MujikaPagination from "@/components/MujikaPagination.vue";
-import MujikaVerticalDivider from "@/components/MujikaVerticalDivider.vue";
+import { usePost } from "@/composables/usePost";
 import { useMujikaGitTalkStore } from "@/stores/useMujikaGitTalkStore";
+import type { GithubIssue } from "@/types";
 
 import MujikaGitTalkCommentListItem from "./MujikaGitTalkCommentListItem.vue";
 
+const route = useRoute();
+const post = usePost();
 const mujikaGitTalkStore = useMujikaGitTalkStore();
+const issue = ref<GithubIssue | null>(null);
+
+const toLogin = () => {
+  mujikaGitTalkStore.toLoginAction();
+};
+
+const getCommentList = async () => {
+  const data = await getIssueByLabelApi(post.value.key);
+  if (data) {
+    mujikaGitTalkStore.state.pagination.total = data.commentCount;
+  }
+};
+
+const onPageChange = (page: number) => {
+  mujikaGitTalkStore.state.pagination.page = page;
+};
+
+onMounted(async () => {
+  if (route.query.code) {
+    const code = route.query.code as string;
+    // 拿 accessToken
+    const res = await getAccessTokenApi({
+      code,
+      clientId: mujikaGitTalkStore.options.clientId,
+      clientSecret: mujikaGitTalkStore.options.clientSecret,
+    });
+    const { access_token, scope, token_type } = res;
+    mujikaGitTalkStore.state.accessToken = access_token;
+    mujikaGitTalkStore.state.scope = scope;
+    mujikaGitTalkStore.state.tokenType = token_type;
+  }
+
+  if (mujikaGitTalkStore.state.accessToken) {
+    const res = await getUserInfoApi(mujikaGitTalkStore.state.accessToken);
+    setOctokitAuth(mujikaGitTalkStore.state.accessToken);
+    mujikaGitTalkStore.state.user = res;
+  }
+
+  getCommentList();
+});
 </script>
 
 <template>
@@ -57,7 +105,12 @@ const mujikaGitTalkStore = useMujikaGitTalkStore();
           >
             发送
           </button>
-          <button v-else class="mujika-git-talk-button" cursor-pointer>
+          <button
+            v-else
+            class="mujika-git-talk-button"
+            cursor-pointer
+            @click="toLogin"
+          >
             点击登录
           </button>
         </div>
@@ -66,10 +119,19 @@ const mujikaGitTalkStore = useMujikaGitTalkStore();
   </MujikaCard>
   <MujikaCard :padding-level="2">
     <div flex="~ col" gap-8>
-      <MujikaGitTalkCommentListItem v-for="n of 4" :key="n" />
+      <MujikaGitTalkCommentListItem
+        v-for="comment of mujikaGitTalkStore.state.commentList"
+        :key="comment.id"
+        :comment="comment"
+      />
     </div>
-    <div mt-8 flex justify-center>
-      <button class="mujika-git-talk-button" cursor-pointer>加载更多</button>
+    <div mt-8>
+      <MujikaPagination
+        :page="mujikaGitTalkStore.state.pagination.page"
+        :page-size="mujikaGitTalkStore.state.pagination.pageSize"
+        :total="mujikaGitTalkStore.state.pagination.total"
+        @page-change="onPageChange"
+      />
     </div>
   </MujikaCard>
 </template>

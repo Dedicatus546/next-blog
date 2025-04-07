@@ -3,3 +3,19 @@
 @use "./components/fonts.scss";
 @use "./components/doc.scss";
 @use "./components/icons.scss";
+@use "./components/gittalk.scss";
+
+#nprogress {
+  pointer-events: none;
+
+  .bar {
+    background-color: #ff8899; // anon
+    opacity: 0.75;
+    position: fixed;
+    z-index: 1031;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+  }
+}
