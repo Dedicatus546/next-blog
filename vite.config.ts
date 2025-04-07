@@ -34,6 +34,7 @@ let markdownitAsyncInstance: MarkdownItAsync | undefined;
 
 // https://vite.dev/config/
 export default defineConfig({
+  envPrefix: "GITHUB_",
   optimizeDeps: {
     include: ["vue", "vue-router", "@vueuse/core"],
   },
@@ -208,7 +209,8 @@ export default defineConfig({
       // },
     }),
     inspect(),
-    exclude(),
+    // 该插件会导致 Octokit 导入不正确
+    // exclude(),
   ],
   resolve: {
     alias: {
