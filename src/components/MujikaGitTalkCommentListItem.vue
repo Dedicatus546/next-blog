@@ -13,11 +13,11 @@ defineProps<{
       rounded-6px
       w-60px
       aspect-ratio-square
-      :src="comment.user?.avatar_url"
-      :alt="`${comment.user?.login}的头像`"
+      :src="comment.user.avatar_url"
+      :alt="`${comment.user.login}的头像`"
     />
     <div flex="~ col grow" gap-2>
-      <div>{{ comment.user?.login }}</div>
+      <div>{{ comment.user.login }} {{ comment.created_at }}</div>
       <div class="haruhikage-doc" v-html="comment.body_html"></div>
     </div>
   </div>

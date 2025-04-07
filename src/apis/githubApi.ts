@@ -46,7 +46,6 @@ export const setOctokitAuth = (accessToken: string) => {
   octokit = new Octokit({
     auth: accessToken,
   });
-  octokit.auth();
 };
 
 export const getIssueByLabelApi = async (
@@ -87,7 +86,7 @@ export const getIssueCommentListApi = async (query: {
       accept: "application/vnd.github.html+json",
     },
   });
-  return data.map<GithubIssueComment>((item) => {
+  return data.map((item) => {
     return {
       id: item.id,
       node_id: item.node_id,
@@ -114,58 +113,116 @@ export const getIssueCommentListApi = async (query: {
   });
 };
 
-export const loadIssueCommentListApi = async (query: { pageSize?: number }) => {
-  octokit.graphql({
-    query: `query getIssueAndComments(
-    $owner: String!,
-    $repo: String!,
-    $id: Int!,
-    $cursor: String,
-    $pageSize: Int!
-  ) {
-    repository(owner: $owner, name: $repo) {
-      issue(number: $id) {
-        title
-        url
-        bodyHTML
-        createdAt
-        comments(last: $pageSize, before: $cursor) {
-          totalCount
-          pageInfo {
-            hasPreviousPage
-            startCursor
-          }
-          nodes {
-            id
-            databaseId
-            author {
-              avatarUrl
-              login
-              url
-            }
+export const loadIssueCommentListApi = async (query: {
+  cursor?: string;
+  issueNumber: number;
+  pageSize?: number;
+}) => {
+  const res = await octokit.graphql({
+    query: `
+      query getIssueAndComments(
+        $owner: String!,
+        $repo: String!,
+        $id: Int!,
+        $cursor: String,
+        $pageSize: Int!
+      ) {
+        repository(owner: $owner, name: $repo) {
+          issue(number: $id) {
+            title
+            url
             bodyHTML
-            body
             createdAt
-            reactions(first: 100, content: HEART) {
+            comments(last: $pageSize, before: $cursor) {
               totalCount
-              viewerHasReacted
-              pageInfo{
-                hasNextPage
+              pageInfo {
+                hasPreviousPage
+                startCursor
               }
               nodes {
                 id
                 databaseId
-                user {
+                author {
+                  avatarUrl
                   login
+                  url
+                }
+                bodyHTML
+                body
+                createdAt
+                reactions(first: 100, content: HEART) {
+                  totalCount
+                  viewerHasReacted
+                  pageInfo{
+                    hasNextPage
+                  }
+                  nodes {
+                    id
+                    databaseId
+                    user {
+                      login
+                    }
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-  }`,
+    `,
     operationName: "getIssueAndComments",
-    variables: {},
+    owner: import.meta.env.GITHUB_OWNER,
+    repo: import.meta.env.GITHUB_REPO,
+    id: query.issueNumber,
+    pageSize: query.pageSize,
+    cursor: query.cursor,
   });
+  const { nodes, pageInfo } = (res as any).repository.issue.comments;
+  const commentList = nodes as Array<{
+    id: string;
+    databaseId: number;
+    author: {
+      avatarUrl: string;
+      login: string;
+      url: string;
+    };
+    bodyHTML: string;
+    body: string;
+    createdAt: string;
+    reactions: {
+      totalCount: number;
+      viewerHasReacted: boolean;
+      pageInfo: {
+        hasNextPage: boolean;
+      };
+      nodes: [
+        {
+          id: string;
+          databaseId: number;
+          user: {
+            login: string;
+          };
+        },
+      ];
+    };
+  }>;
+  return {
+    pageInfo: {
+      cursor: pageInfo.startCursor,
+      hasPreviousPage: pageInfo.hasPreviousPage,
+    },
+    list: commentList.reverse().map<GithubIssueComment>((item) => {
+      return {
+        id: item.id,
+        body: item.body,
+        body_html: item.bodyHTML,
+        user: {
+          login: item.author.login,
+          avatar_url: item.author.avatarUrl,
+          url: item.author.url,
+        },
+        created_at: item.createdAt,
+      };
+    }),
+  };
 };

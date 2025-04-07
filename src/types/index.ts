@@ -75,23 +75,13 @@ export interface GithubIssue {
 }
 
 export interface GithubIssueComment {
-  id: number;
-  node_id: string;
-  url: string;
-  body?: string;
-  body_text?: string;
-  body_html?: string;
-  html_url: string;
+  id: string;
+  body: string;
+  body_html: string;
   user: {
-    name?: string | null;
     login: string;
-    id: number;
-    node_id: string;
     avatar_url: string;
     url: string;
-    html_url: string;
-  } | null;
+  };
   created_at: string;
-  updated_at: string;
-  issue_url: string;
 }

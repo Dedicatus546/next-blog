@@ -3,6 +3,7 @@ import {
   getAccessTokenApi,
   getIssueByLabelApi,
   getUserInfoApi,
+  loadIssueCommentListApi,
   setOctokitAuth,
 } from "@/apis/githubApi";
 import MujikaCard from "@/components/MujikaCard.vue";
@@ -22,14 +23,21 @@ const toLogin = () => {
 };
 
 const getCommentList = async () => {
-  const data = await getIssueByLabelApi(post.value.key);
-  if (data) {
-    mujikaGitTalkStore.state.pagination.total = data.commentCount;
+  if (!issue.value) {
+    issue.value = await getIssueByLabelApi(post.value.key);
   }
+  const { list, pageInfo } = await loadIssueCommentListApi({
+    issueNumber: issue.value!.number,
+    cursor: mujikaGitTalkStore.state.pagination.cursor,
+    pageSize: mujikaGitTalkStore.state.pagination.pageSize,
+  });
+  mujikaGitTalkStore.state.pagination.total = issue.value!.commentCount;
+  mujikaGitTalkStore.state.commentList.push(...list);
+  mujikaGitTalkStore.state.pagination.cursor = pageInfo.cursor;
 };
 
-const onPageChange = (page: number) => {
-  mujikaGitTalkStore.state.pagination.page = page;
+const loadMore = () => {
+  getCommentList();
 };
 
 onMounted(async () => {
@@ -126,12 +134,15 @@ onMounted(async () => {
       />
     </div>
     <div mt-8>
-      <MujikaPagination
+      <!-- <MujikaPagination
         :page="mujikaGitTalkStore.state.pagination.page"
         :page-size="mujikaGitTalkStore.state.pagination.pageSize"
         :total="mujikaGitTalkStore.state.pagination.total"
         @page-change="onPageChange"
-      />
+      /> -->
+      <button class="mujika-git-talk-button" cursor-pointer @click="loadMore">
+        加载更多
+      </button>
     </div>
   </MujikaCard>
 </template>

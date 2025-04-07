@@ -17,6 +17,7 @@ export const useMujikaGitTalkStore = defineStore(
       postKeyToIssueMap: new Map<number, GithubIssue>(),
       pagination: {
         page: 1,
+        cursor: undefined,
         pageSize: 10,
         total: 0,
       },
