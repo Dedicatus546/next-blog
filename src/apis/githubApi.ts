@@ -60,57 +60,13 @@ export const getIssueByLabelApi = async (
   });
   if (data.length > 0) {
     return {
+      id: data[0].id,
+      nodeId: data[0].node_id,
       number: data[0].number,
       commentCount: data[0].comments,
     };
   }
   return null;
-};
-
-export const getIssueCommentListApi = async (query: {
-  issueNumber: number;
-  page?: number;
-  pageSize?: number;
-}) => {
-  const { issueNumber, page = 1, pageSize = 10 } = query;
-  const { data } = await octokit.rest.issues.listComments({
-    owner: import.meta.env.GITHUB_OWNER,
-    repo: import.meta.env.GITHUB_REPO,
-    issue_number: issueNumber,
-    per_page: pageSize,
-    page,
-    sort: "updated",
-    direction: "desc",
-    headers: {
-      // 返回 body_html
-      accept: "application/vnd.github.html+json",
-    },
-  });
-  return data.map((item) => {
-    return {
-      id: item.id,
-      node_id: item.node_id,
-      url: item.url,
-      body: item.body,
-      body_text: item.body_text,
-      body_html: item.body_html,
-      html_url: item.html_url,
-      user: item.user
-        ? {
-            name: item.user.name,
-            login: item.user.login,
-            id: item.user.id,
-            node_id: item.user.node_id,
-            avatar_url: item.user.avatar_url,
-            url: item.user.url,
-            html_url: item.user.html_url,
-          }
-        : null,
-      created_at: item.created_at,
-      updated_at: item.updated_at,
-      issue_url: item.issue_url,
-    };
-  });
 };
 
 export const loadIssueCommentListApi = async (query: {
@@ -224,5 +180,67 @@ export const loadIssueCommentListApi = async (query: {
         created_at: item.createdAt,
       };
     }),
+  };
+};
+
+export const createIssueCommentApi = async (query: {
+  content: string;
+  issueNodeId: GithubIssue["nodeId"];
+}): Promise<GithubIssueComment> => {
+  const res = await octokit.graphql({
+    query: `
+      mutation AddCommentToIssue($issueNodeId: ID!, $content: String!) {
+        addComment(input: {
+          subjectId: $issueNodeId,
+          body: $content
+        }) {
+          commentEdge {
+            node {
+              id
+              databaseId
+              author {
+                avatarUrl
+                login
+                url
+              }
+              bodyHTML
+              body
+              createdAt
+              reactions(first: 100, content: HEART) {
+                totalCount
+                viewerHasReacted
+                pageInfo{
+                  hasNextPage
+                }
+                nodes {
+                  id
+                  databaseId
+                  user {
+                    login
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    operationName: "AddCommentToIssue",
+    owner: import.meta.env.GITHUB_OWNER,
+    repo: import.meta.env.GITHUB_REPO,
+    issueNodeId: query.issueNodeId,
+    content: query.content,
+  });
+  const node = (res as any).addComment.commentEdge.node;
+  return {
+    id: node.id,
+    body: node.body,
+    body_html: node.bodyHTML,
+    user: {
+      login: node.author.login,
+      avatar_url: node.author.avatarUrl,
+      url: node.author.url,
+    },
+    created_at: node.createdAt,
   };
 };

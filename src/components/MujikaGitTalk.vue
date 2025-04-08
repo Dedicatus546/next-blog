@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { vIntersectionObserver } from "@vueuse/components";
+
 import {
+  createIssueCommentApi,
   getAccessTokenApi,
   getIssueByLabelApi,
   getUserInfoApi,
@@ -36,8 +39,22 @@ const getCommentList = async () => {
   mujikaGitTalkStore.state.pagination.cursor = pageInfo.cursor;
 };
 
-const loadMore = () => {
-  getCommentList();
+const loadMore = ([entry]: IntersectionObserverEntry[]) => {
+  if (entry.isIntersecting) {
+    getCommentList();
+  }
+};
+
+const submit = async () => {
+  if (!mujikaGitTalkStore.state.comment) {
+    return;
+  }
+  const comment = await createIssueCommentApi({
+    issueNodeId: issue.value!.nodeId,
+    content: mujikaGitTalkStore.state.comment,
+  });
+  mujikaGitTalkStore.state.comment = "";
+  mujikaGitTalkStore.state.commentList.unshift(comment);
 };
 
 onMounted(async () => {
@@ -110,6 +127,7 @@ onMounted(async () => {
             v-if="mujikaGitTalkStore.isLogin"
             class="mujika-git-talk-button"
             cursor-pointer
+            @click="submit"
           >
             发送
           </button>
@@ -133,16 +151,25 @@ onMounted(async () => {
         :comment="comment"
       />
     </div>
-    <div mt-8>
+    <div
+      v-if="
+        mujikaGitTalkStore.state.commentList.length <
+        mujikaGitTalkStore.state.pagination.total
+      "
+      v-intersection-observer="[
+        loadMore,
+        {
+          rootMargin: '0px 0px 90px 0px',
+          threshold: [1],
+        },
+      ]"
+    >
       <!-- <MujikaPagination
         :page="mujikaGitTalkStore.state.pagination.page"
         :page-size="mujikaGitTalkStore.state.pagination.pageSize"
         :total="mujikaGitTalkStore.state.pagination.total"
         @page-change="onPageChange"
       /> -->
-      <button class="mujika-git-talk-button" cursor-pointer @click="loadMore">
-        加载更多
-      </button>
     </div>
   </MujikaCard>
 </template>

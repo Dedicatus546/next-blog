@@ -70,6 +70,8 @@ export interface GithubUser {
 }
 
 export interface GithubIssue {
+  id: number;
+  nodeId: string;
   number: number;
   commentCount: number;
 }
