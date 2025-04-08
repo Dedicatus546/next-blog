@@ -1,10 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const mode = ref(0);
+
+const optionList = [
+  { label: "自动", value: 0 },
+  { label: "夜间", value: 1 },
+  { label: "日间", value: 2 },
+];
+</script>
 
 <template>
   <header
     class="mujika-header"
     flex="~ shrink-0"
-    p-4
+    px-4
+    h="70px"
     bg="#fff"
     items-center
     justify-between
@@ -34,6 +43,27 @@
         <i class="i-logos:github-icon"></i>
       </a>
     </div> -->
+    <div>
+      <MujikaRadio v-model:model-value="mode">
+        <MujikaRadioItem :value="0" title="自动">
+          <div leading-0 relative>
+            <i class="i-ri:sun-line" opacity-1></i>
+            <div w="1/2" h="1/2" left-0 top-0 absolute>
+              <i h-full w-full class="i-ri:moon-line"></i>
+            </div>
+            <div w="1/2" h="1/2" bottom-0 right-0 absolute overflow-hidden>
+              <i h-full w-full class="i-ri:sun-line"></i>
+            </div>
+          </div>
+        </MujikaRadioItem>
+        <MujikaRadioItem :value="1" title="日间">
+          <i class="i-ri:sun-line"></i>
+        </MujikaRadioItem>
+        <MujikaRadioItem :value="2" title="夜间">
+          <i class="i-ri:moon-line"></i>
+        </MujikaRadioItem>
+      </MujikaRadio>
+    </div>
   </header>
 </template>
 

@@ -5,7 +5,7 @@ import { PageType } from "./types";
 </script>
 
 <template>
-  <div class="mujika" min-h="100vh" flex="~ col" bg="#fafafa">
+  <div class="mujika" min-h="100vh" flex="~ col" bg="[--mygo-c-bg-alt]">
     <MujikaHeader />
     <main
       class="mujika-home"
