@@ -11,6 +11,9 @@ importers:
       '@unocss/reset':
         specifier: 66.1.0-beta.8
         version: 66.1.0-beta.8
+      '@vueuse/components':
+        specifier: ^13.0.0
+        version: 13.0.0(vue@3.5.13(typescript@5.7.3))
       '@vueuse/core':
         specifier: ^13.0.0
         version: 13.0.0(vue@3.5.13(typescript@5.7.3))
@@ -1197,6 +1200,11 @@ packages:
         optional: true
       vue:
         optional: true
+
+  '@vueuse/components@13.0.0':
+    resolution: {integrity: sha512-rcGp3c5Yu4SVLGUhBXT0q227nduFx1HTKzJBQkPLpIhwG1SB8RZ5bbri9sbusGaFZB5CYc6jza5+gfSJ7YidIg==}
+    peerDependencies:
+      vue: ^3.5.0
 
   '@vueuse/core@13.0.0':
     resolution: {integrity: sha512-rkgb4a8/0b234lMGCT29WkCjPfsX0oxrIRR7FDndRoW3FsaC9NBzefXg/9TLhAgwM11f49XnutshM4LzJBrQ5g==}
@@ -3879,6 +3887,12 @@ snapshots:
   '@vue/tsconfig@0.7.0(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))':
     optionalDependencies:
       typescript: 5.7.3
+      vue: 3.5.13(typescript@5.7.3)
+
+  '@vueuse/components@13.0.0(vue@3.5.13(typescript@5.7.3))':
+    dependencies:
+      '@vueuse/core': 13.0.0(vue@3.5.13(typescript@5.7.3))
+      '@vueuse/shared': 13.0.0(vue@3.5.13(typescript@5.7.3))
       vue: 3.5.13(typescript@5.7.3)
 
   '@vueuse/core@13.0.0(vue@3.5.13(typescript@5.7.3))':
