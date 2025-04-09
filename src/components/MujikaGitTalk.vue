@@ -20,12 +20,14 @@ const route = useRoute();
 const post = usePost();
 const mujikaGitTalkStore = useMujikaGitTalkStore();
 const issue = ref<GithubIssue | null>(null);
+const loading = ref(false);
 
 const toLogin = () => {
   mujikaGitTalkStore.toLoginAction();
 };
 
 const getCommentList = async () => {
+  loading.value = true;
   if (!issue.value) {
     issue.value = await getIssueByLabelApi(post.value.key);
   }
@@ -37,10 +39,11 @@ const getCommentList = async () => {
   mujikaGitTalkStore.state.pagination.total = issue.value!.commentCount;
   mujikaGitTalkStore.state.commentList.push(...list);
   mujikaGitTalkStore.state.pagination.cursor = pageInfo.cursor;
+  loading.value = false;
 };
 
 const loadMore = ([entry]: IntersectionObserverEntry[]) => {
-  if (entry.isIntersecting) {
+  if (entry.isIntersecting && !loading.value) {
     getCommentList();
   }
 };
