@@ -5,7 +5,6 @@
   --mygo-font-family-mono:
     ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono",
     "Courier New", monospace;
-  font-optical-sizing: auto;
 }
 
 :root:where(:lang(zh)) {
@@ -26,7 +25,7 @@
 
 :root {
   --mygo-c-border: #e8e8e8;
-  // --mygo-c-divider: #e8e8e8;
+  // --mygo-c-divider: var(--mygo-c-border);
   // --mygo-c-gutter: #2b2b2b;
 }
 
@@ -40,7 +39,6 @@
   --mygo-c-text-1: #3c3c43;
   --mygo-c-text-2: #67676c;
   --mygo-c-text-3: #929295;
-  color: var(--mygo-c-text-1);
 }
 
 .dark {

@@ -229,8 +229,10 @@
     margin: 0;
     --uno: p-4;
     overflow-x: auto;
-    border: 1px solid #e8e8e8;
+    border: 1px solid var(--mygo-c-border);
     border-radius: var(--mygo-border-radius-base);
+    background-color: var(--s-light-bg);
+    color: var(--s-light);
 
     span {
       background-color: var(--s-light-bg);
@@ -238,8 +240,8 @@
     }
 
     .dark & {
-      background-color: var(--s-light-bg);
-      color: var(--s-light);
+      background-color: var(--s-dark-bg);
+      color: var(--s-dark);
       
       span {
         background-color: var(--s-dark-bg);

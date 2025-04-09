@@ -22,3 +22,12 @@ li,
 p {
   overflow-wrap: break-word;
 }
+
+:root {
+  font-optical-sizing: auto;
+  color: var(--mygo-c-text-1);
+}
+
+html.dark {
+  color-scheme: dark;
+}

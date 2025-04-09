@@ -23,8 +23,8 @@ const {
     overflow-auto
   >
     <div
+      v-if="hasPadding"
       :class="{
-        'p-0': !hasPadding,
         'p-4': hasPadding && paddingLevel === 1,
         'p-8': hasPadding && paddingLevel === 2,
         'p-12': hasPadding && paddingLevel === 3,
@@ -33,6 +33,9 @@ const {
     >
       <slot></slot>
     </div>
+    <template v-else>
+      <slot></slot>
+    </template>
   </div>
 </template>
 

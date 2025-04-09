@@ -99,7 +99,7 @@ onMounted(async () => {
       />
       <div
         flex="~ shrink-0"
-        bg="[#fafafa]"
+        bg="[var(--mygo-c-bg-alt)]"
         rounded-6px
         w-60px
         aspect-ratio-square
@@ -146,7 +146,10 @@ onMounted(async () => {
       </div>
     </div>
   </MujikaCard>
-  <MujikaCard :padding-level="2">
+  <MujikaCard
+    :padding-level="2"
+    v-if="mujikaGitTalkStore.state.commentList.length > 0"
+  >
     <div flex="~ col" gap-8>
       <MujikaGitTalkCommentListItem
         v-for="comment of mujikaGitTalkStore.state.commentList"
