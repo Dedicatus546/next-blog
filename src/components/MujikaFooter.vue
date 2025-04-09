@@ -5,7 +5,7 @@
     class="mujika-footer"
     px-4
     py-6
-    bg-white
+    bg="[var(--mygo-c-bg)]"
     flex="~ col shrink-0"
     gap-2
     items-center
@@ -28,6 +28,6 @@
 
 <style scoped lang="scss">
 .mujika-footer {
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid var(--mygo-c-border);
 }
 </style>

@@ -10,9 +10,7 @@ const { meta } = useRoute();
 const page = computed(() => meta.page as MarkdownPage);
 const { prev, next } = usePostPrevAndNextPost(() => page.value.hash);
 
-useEventListener(window, "hashchange", () => {
-  navigate();
-});
+useEventListener(window, "hashchange", navigate);
 const mujikaDocContentRef = useTemplateRef("mujikaDocContentRef");
 useEventListener(mujikaDocContentRef, "click", (e) => {
   const target = e.target as HTMLElement;

@@ -16,34 +16,31 @@
 
 :root {
   --mygo-c-bg: #ffffff;
-  --mygo-c-bg-alt: #f6f6f7;
-  --mygo-c-bg-elv: #ffffff;
-  --mygo-c-bg-soft: #f6f6f7;
+  --mygo-c-bg-alt: #f6f6f6;
 }
 
 .dark {
-  --mygo-c-bg: #1b1b1f;
-  --mygo-c-bg-alt: #161618;
-  --mygo-c-bg-elv: #202127;
-  --mygo-c-bg-soft: #202127;
+  --mygo-c-bg: #212121;
+  --mygo-c-bg-alt: #171717;
 }
 
 :root {
-  --mygo-c-border: #c2c2c4;
-  --mygo-c-divider: #e2e2e3;
-  --mygo-c-gutter: #e2e2e3;
+  --mygo-c-border: #e8e8e8;
+  // --mygo-c-divider: #e8e8e8;
+  // --mygo-c-gutter: #2b2b2b;
 }
 
 .dark {
-  --mygo-c-border: #3c3f44;
-  --mygo-c-divider: #2e2e32;
-  --mygo-c-gutter: #000000;
+  --mygo-c-border: #333;
+  // --mygo-c-divider: #2b2b2b;
+  // --mygo-c-gutter: #2b2b2b;
 }
 
 :root {
   --mygo-c-text-1: #3c3c43;
   --mygo-c-text-2: #67676c;
   --mygo-c-text-3: #929295;
+  color: var(--mygo-c-text-1);
 }
 
 .dark {
@@ -65,6 +62,7 @@
 }
 
 :root {
+  --mygo-border-radius-base: 6px;
   --mygo-border-radius-1: 2px;
   --mygo-border-radius-2: 4px;
   --mygo-border-radius-3: 6px;

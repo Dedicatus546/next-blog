@@ -97,18 +97,18 @@ const pageChange = (page: number) => {
 <style lang="scss" scoped>
 .mujika-pagination {
   .mujika-pagination-button {
-    padding: 5px 12px;
-    border-radius: 6px;
+    --uno: px-3 py-1;
+    border-radius: var(--mygo-border-radius-base);
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover,
     &.active {
-      background-color: #fff;
+      background-color: var(--mygo-c-bg);
     }
 
     &.active {
-      border: 1px solid #e8e8e8;
+      border: 1px solid var(--mygo-c-border);
     }
   }
 }

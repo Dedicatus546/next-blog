@@ -179,13 +179,13 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .mujika-git-talk-textarea {
-  border: 1px solid #e8e8e8;
-  border-radius: 6px;
+  border: 1px solid var(--mygo-c-border);
+  border-radius: var(--mygo-border-radius-base);
 }
 
 .mujika-git-talk-button {
-  border: 1px solid #e8e8e8;
+  border: 1px solid var(--mygo-c-border);
   padding: 4px 16px;
-  border-radius: 6px;
+  border-radius: var(--mygo-border-radius-base);
 }
 </style>

@@ -38,12 +38,12 @@ const {
 
 <style scoped lang="scss">
 .mujika-card {
-  border-radius: 6px;
+  border-radius: var(--mygo-border-radius-base);
   background-color: var(--mygo-c-bg);
   transition: box-shadow 0.3s ease;
 
   &.mujika-card--border {
-    border: 1px solid #e8e8e8;
+    border: 1px solid var(--mygo-c-border);
   }
 
   &.mujika-card--hover:hover {

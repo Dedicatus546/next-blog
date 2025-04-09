@@ -200,7 +200,7 @@
 
     [class*="language-"] {
       margin: 8px 0;
-      border-radius: 6px;
+      border-radius: var(--mygo-border-radius-base);
 
       code {
         font-weight: 400;
@@ -230,7 +230,7 @@
     --uno: p-4;
     overflow-x: auto;
     border: 1px solid #e8e8e8;
-    border-radius: 6px;
+    border-radius: var(--mygo-border-radius-base);
 
     span {
       background-color: var(--s-light-bg);
@@ -254,7 +254,7 @@
   //   overflow-x: auto;
   //   transition: background-color 0.5s;
   //   border: 1px solid #9ca3af4d;
-  //   border-radius: 6px;
+  //   border-radius: var(--mygo-border-radius-base);
 
   //   pre,
   //   code {
