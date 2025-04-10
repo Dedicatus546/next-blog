@@ -64,6 +64,18 @@
     0 18px 56px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.16);
 }
 
+.dark {
+  --mygo-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.96), 0 1px 2px rgba(0, 0, 0, 0.94);
+  --mygo-shadow-2:
+    0 3px 12px rgba(0, 0, 0, 0.93), 0 1px 4px rgba(0, 0, 0, 0.93);
+  --mygo-shadow-3:
+    0 12px 32px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.92);
+  --mygo-shadow-4:
+    0 14px 44px rgba(0, 0, 0, 0.88), 0 3px 9px rgba(0, 0, 0, 0.88);
+  --mygo-shadow-5:
+    0 18px 56px rgba(0, 0, 0, 0.84), 0 4px 12px rgba(0, 0, 0, 0.84);
+}
+
 :root {
   --mygo-border-radius-small: 4px;
   --mygo-border-radius-base: 6px;

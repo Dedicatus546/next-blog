@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { vIntersectionObserver } from "@vueuse/components";
+import { useRouteQuery } from "@vueuse/router";
 
 import {
   createIssueCommentApi,
@@ -16,7 +17,7 @@ import type { GithubIssue, GithubIssueComment } from "@/types";
 
 import MujikaGitTalkCommentListItem from "./MujikaGitTalkCommentListItem.vue";
 
-const route = useRoute();
+const githubCode = useRouteQuery("code") as Ref<string | undefined>;
 const post = usePost();
 const mujikaGitTalkStore = useMujikaGitTalkStore();
 
@@ -72,11 +73,10 @@ const submit = async () => {
 };
 
 onMounted(async () => {
-  if (route.query.code) {
-    const code = route.query.code as string;
+  if (githubCode.value) {
     // 拿 accessToken
     const res = await getAccessTokenApi({
-      code,
+      code: githubCode.value,
       clientId: mujikaGitTalkStore.options.clientId,
       clientSecret: mujikaGitTalkStore.options.clientSecret,
     });
@@ -84,6 +84,7 @@ onMounted(async () => {
     mujikaGitTalkStore.state.accessToken = access_token;
     mujikaGitTalkStore.state.scope = scope;
     mujikaGitTalkStore.state.tokenType = token_type;
+    githubCode.value = undefined;
   }
 
   if (mujikaGitTalkStore.state.accessToken) {

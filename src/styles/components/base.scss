@@ -31,3 +31,17 @@ p {
 html.dark {
   color-scheme: dark;
 }
+
+.flyout-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.flyout-leave-active {
+  transition: all 0.15s ease-in;
+}
+
+.flyout-enter-from,
+.flyout-leave-to {
+  opacity: 0;
+  transform: translateY(-16px);
+}

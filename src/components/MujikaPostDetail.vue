@@ -53,6 +53,7 @@ onMounted(() => {
 <template>
   <div flex gap-2 items-start>
     <div flex="~ col grow" gap-2 min-w-0>
+      <MujikaTocHeader />
       <MujikaCard :padding-level="2">
         <div flex="~ col" mb-4 gap-4>
           <h1 text="34px center">{{ post.title }}</h1>
@@ -79,7 +80,7 @@ onMounted(() => {
       </MujikaCard>
       <MujikaGitTalk :key="post.hash" />
     </div>
-    <MujikaTocAside />
+    <MujikaTocAside un-hidden lg:block />
   </div>
 </template>
 
