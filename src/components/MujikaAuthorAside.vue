@@ -13,7 +13,7 @@
         <MujikaAuthorAvatar />
         <div flex="~ col" gap-2 items-center>
           <div>Deidactus545</div>
-          <div text-sm>Index-Librorum-Prohibitorum</div>
+          <div text="[var(--mygo-c-text-2)]">Index-Librorum-Prohibitorum</div>
         </div>
         <MujikaAuthorStatistic />
       </div>

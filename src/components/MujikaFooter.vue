@@ -20,7 +20,7 @@
       </a>
       PRESENT © Dedicatus545
     </div>
-    <div>
+    <div text="[var(--mygo-c-text-2)]">
       如果我和狗一样有尾巴的话，一定会藏不住这份喜悦，而尾巴一直摇个不停吧。
     </div>
   </footer>

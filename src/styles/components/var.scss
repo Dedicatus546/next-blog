@@ -48,6 +48,11 @@
 }
 
 :root {
+  --mygo-c-code-text: var(--mygo-c-text-2);
+  --mygo-c-code-bg: var(--mygo-c-bg-alt);
+}
+
+:root {
   --mygo-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
   --mygo-shadow-2:
     0 3px 12px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.07);
@@ -60,10 +65,8 @@
 }
 
 :root {
+  --mygo-border-radius-small: 4px;
   --mygo-border-radius-base: 6px;
-  --mygo-border-radius-1: 2px;
-  --mygo-border-radius-2: 4px;
-  --mygo-border-radius-3: 6px;
-  --mygo-border-radius-4: 8px;
-  --mygo-border-radius-5: 10px;
+  --mygo-border-radius-large: 8px;
+  // --mygo-border-radius-5: 10px;
 }

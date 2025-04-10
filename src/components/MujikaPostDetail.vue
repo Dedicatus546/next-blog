@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import { usePost } from "@/composables/usePost";
 import { usePostPrevAndNextPost } from "@/composables/usePostPrevAndNextPost";
-import type { MarkdownPage } from "@/types";
 import { navigate } from "@/utils/headerAnchor";
 
 import MujikaCard from "./MujikaCard.vue";
 
 const router = useRouter();
-const { meta } = useRoute();
-const page = computed(() => meta.page as MarkdownPage);
-const { prev, next } = usePostPrevAndNextPost(() => page.value.hash);
+
+const post = usePost();
+const { prev, next } = usePostPrevAndNextPost(() => post.value.hash);
 
 useEventListener(window, "hashchange", navigate);
 const mujikaDocContentRef = useTemplateRef("mujikaDocContentRef");
@@ -55,14 +55,14 @@ onMounted(() => {
     <div flex="~ col grow" gap-2 min-w-0>
       <MujikaCard :padding-level="2">
         <div flex="~ col" mb-4 gap-4>
-          <h1 text="34px center">{{ page.title }}</h1>
+          <h1 text="34px center">{{ post.title }}</h1>
         </div>
-        <MujikaPostMeta :page="page"></MujikaPostMeta>
+        <MujikaPostMeta :page="post"></MujikaPostMeta>
         <div class="mujika-doc-content" ref="mujikaDocContentRef">
           <slot />
         </div>
         <div flex="~ wrap" mt-8 gap-4 justify-center>
-          <div v-for="item of page.tags" :key="item">#{{ item }}</div>
+          <div v-for="item of post.tags" :key="item">#{{ item }}</div>
         </div>
       </MujikaCard>
       <MujikaCard :padding-level="2" v-if="prev || next">
@@ -77,7 +77,7 @@ onMounted(() => {
           </RouterLink>
         </div>
       </MujikaCard>
-      <MujikaGitTalk />
+      <MujikaGitTalk :key="post.hash" />
     </div>
     <MujikaTocAside />
   </div>

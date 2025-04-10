@@ -12,52 +12,63 @@ import {
 import MujikaCard from "@/components/MujikaCard.vue";
 import { usePost } from "@/composables/usePost";
 import { useMujikaGitTalkStore } from "@/stores/useMujikaGitTalkStore";
-import type { GithubIssue } from "@/types";
+import type { GithubIssue, GithubIssueComment } from "@/types";
 
 import MujikaGitTalkCommentListItem from "./MujikaGitTalkCommentListItem.vue";
 
 const route = useRoute();
 const post = usePost();
 const mujikaGitTalkStore = useMujikaGitTalkStore();
-const issue = ref<GithubIssue | null>(null);
-const loading = ref(false);
+
+const state = reactive({
+  loading: false,
+  issue: null as GithubIssue | null,
+  comment: "",
+  commentList: [] as Array<GithubIssueComment>,
+  pagination: {
+    page: 1,
+    cursor: null as string | null,
+    pageSize: 10,
+    total: 0,
+  },
+});
 
 const toLogin = () => {
   mujikaGitTalkStore.toLoginAction();
 };
 
 const getCommentList = async () => {
-  loading.value = true;
-  if (!issue.value) {
-    issue.value = await getIssueByLabelApi(post.value.key);
+  state.loading = true;
+  if (!state.issue) {
+    state.issue = await getIssueByLabelApi(post.value.key);
   }
   const { list, pageInfo } = await loadIssueCommentListApi({
-    issueNumber: issue.value!.number,
-    cursor: mujikaGitTalkStore.state.pagination.cursor,
-    pageSize: mujikaGitTalkStore.state.pagination.pageSize,
+    issueNumber: state.issue!.number,
+    cursor: state.pagination.cursor!,
+    pageSize: state.pagination.pageSize,
   });
-  mujikaGitTalkStore.state.pagination.total = issue.value!.commentCount;
-  mujikaGitTalkStore.state.commentList.push(...list);
-  mujikaGitTalkStore.state.pagination.cursor = pageInfo.cursor;
-  loading.value = false;
+  state.pagination.total = state.issue!.commentCount;
+  state.commentList.push(...list);
+  state.pagination.cursor = pageInfo.cursor;
+  state.loading = false;
 };
 
 const loadMore = ([entry]: IntersectionObserverEntry[]) => {
-  if (entry.isIntersecting && !loading.value) {
+  if (entry.isIntersecting && !state.loading) {
     getCommentList();
   }
 };
 
 const submit = async () => {
-  if (!mujikaGitTalkStore.state.comment) {
+  if (!state.comment) {
     return;
   }
   const comment = await createIssueCommentApi({
-    issueNodeId: issue.value!.nodeId,
-    content: mujikaGitTalkStore.state.comment,
+    issueNodeId: state.issue!.nodeId,
+    content: state.comment,
   });
-  mujikaGitTalkStore.state.comment = "";
-  mujikaGitTalkStore.state.commentList.unshift(comment);
+  state.comment = "";
+  state.commentList.unshift(comment);
 };
 
 onMounted(async () => {
@@ -112,7 +123,7 @@ onMounted(async () => {
       <div flex="~ col grow" gap-4>
         <textarea
           :disabled="!mujikaGitTalkStore.isLogin"
-          v-model="mujikaGitTalkStore.state.comment"
+          v-model="state.comment"
           placeholder="万水千山总是情，留下评论行不行"
           class="mujika-git-talk-textarea"
           un-disabled:cursor-not-allowed
@@ -146,22 +157,16 @@ onMounted(async () => {
       </div>
     </div>
   </MujikaCard>
-  <MujikaCard
-    :padding-level="2"
-    v-if="mujikaGitTalkStore.state.commentList.length > 0"
-  >
+  <MujikaCard :padding-level="2" v-if="state.commentList.length > 0">
     <div flex="~ col" gap-8>
       <MujikaGitTalkCommentListItem
-        v-for="comment of mujikaGitTalkStore.state.commentList"
+        v-for="comment of state.commentList"
         :key="comment.id"
         :comment="comment"
       />
     </div>
     <div
-      v-if="
-        mujikaGitTalkStore.state.commentList.length <
-        mujikaGitTalkStore.state.pagination.total
-      "
+      v-if="state.commentList.length < state.pagination.total"
       v-intersection-observer="[
         loadMore,
         {

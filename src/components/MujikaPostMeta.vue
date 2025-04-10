@@ -39,7 +39,7 @@ const time = computed(() => {
 </script>
 
 <template>
-  <div flex="~ col" gap-3>
+  <div flex="~ col" gap-3 text="[var(--mygo-c-text-2)]">
     <div flex="~ wrap" gap-3 justify-center>
       <div v-if="page.top > 0" flex gap-1 items-center>
         <i class="i-fa6-solid:thumbtack"></i>

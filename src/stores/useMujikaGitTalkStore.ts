@@ -1,26 +1,14 @@
-import type { GithubIssue, GithubIssueComment, GithubUser } from "@/types";
+import type { GithubUser } from "@/types";
 
 export const useMujikaGitTalkStore = defineStore(
   "mujika-git-talk-store",
   () => {
     const state = reactive({
-      code: "",
-
       accessToken: "",
       scope: "",
       tokenType: "",
 
       user: null as GithubUser | null,
-
-      comment: "",
-      commentList: [] as Array<GithubIssueComment>,
-      postKeyToIssueMap: new Map<number, GithubIssue>(),
-      pagination: {
-        page: 1,
-        cursor: undefined,
-        pageSize: 10,
-        total: 0,
-      },
     });
 
     const options = readonly({
@@ -49,7 +37,12 @@ export const useMujikaGitTalkStore = defineStore(
   },
   {
     persist: {
-      pick: ["state.accessToken", "state.scope", "state.tokenType"],
+      pick: [
+        "state.accessToken",
+        "state.scope",
+        "state.tokenType",
+        "state.user",
+      ],
     },
   },
 );

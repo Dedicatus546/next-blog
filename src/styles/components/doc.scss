@@ -215,9 +215,10 @@
   }
 
   :not(pre) > code {
-    border-radius: 4px;
+    border-radius: var(--mygo-border-radius-base);
     padding: 3px 6px;
-    background-color: #fafafa;
+    background-color: var(--mygo-c-code-bg);
+    color: var(--mygo-c-code-text);
     transition:
       color 0.25s,
       background-color 0.5s;
@@ -230,21 +231,17 @@
     --uno: p-4;
     overflow-x: auto;
     border: 1px solid var(--mygo-c-border);
-    border-radius: var(--mygo-border-radius-base);
-    background-color: var(--s-light-bg);
-    color: var(--s-light);
+    border-radius: var(--mygo-border-radius-small);
+    background-color: var(--mygo-c-code-bg);
+    color: var(--mygo-c-code-text);
 
+    // 背景不使用 shiki 提供的颜色
     span {
-      background-color: var(--s-light-bg);
       color: var(--s-light);
     }
 
     .dark & {
-      background-color: var(--s-dark-bg);
-      color: var(--s-dark);
-      
       span {
-        background-color: var(--s-dark-bg);
         color: var(--s-dark);
       }
     }
