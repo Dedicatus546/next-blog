@@ -8,7 +8,7 @@ import unocss from "unocss/vite";
 import autoImport from "unplugin-auto-import/vite";
 import components from "unplugin-vue-components/vite";
 import inspect from "vite-plugin-inspect";
-import exclude from "vite-plugin-optimize-exclude";
+// import exclude from "vite-plugin-optimize-exclude";
 import markdown from "unplugin-vue-markdown/vite";
 import markdownItShiki from "@shikijs/markdown-it";
 import {
