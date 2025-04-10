@@ -17,6 +17,9 @@ importers:
       '@vueuse/core':
         specifier: ^13.1.0
         version: 13.1.0(vue@3.5.13(typescript@5.7.3))
+      '@vueuse/router':
+        specifier: ^13.1.0
+        version: 13.1.0(vue-router@4.5.0(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -1341,6 +1344,12 @@ packages:
 
   '@vueuse/metadata@13.1.0':
     resolution: {integrity: sha512-+TDd7/a78jale5YbHX9KHW3cEDav1lz1JptwDvep2zSG8XjCsVE+9mHIzjTOaPbHUAk5XiE4jXLz51/tS+aKQw==}
+
+  '@vueuse/router@13.1.0':
+    resolution: {integrity: sha512-rfSIK1VMmKO+M+vo6PMcL3hSmvqFbTbQ7hdAYHKSba8E6V2fV8xXTjho3OM3rjguIsl7Ml9FU7tSuKQFUvkApg==}
+    peerDependencies:
+      vue: ^3.5.0
+      vue-router: ^4.0.0
 
   '@vueuse/shared@13.1.0':
     resolution: {integrity: sha512-IVS/qRRjhPTZ6C2/AM3jieqXACGwFZwWTdw5sNTSKk2m/ZpkuuN+ri+WCVUP8TqaKwJYt/KuMwmXspMAw8E6ew==}
@@ -4279,6 +4288,12 @@ snapshots:
       vue: 3.5.13(typescript@5.7.3)
 
   '@vueuse/metadata@13.1.0': {}
+
+  '@vueuse/router@13.1.0(vue-router@4.5.0(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))':
+    dependencies:
+      '@vueuse/shared': 13.1.0(vue@3.5.13(typescript@5.7.3))
+      vue: 3.5.13(typescript@5.7.3)
+      vue-router: 4.5.0(vue@3.5.13(typescript@5.7.3))
 
   '@vueuse/shared@13.1.0(vue@3.5.13(typescript@5.7.3))':
     dependencies:
