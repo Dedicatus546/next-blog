@@ -9,7 +9,7 @@ const { renderList } = storeToRefs(store);
 
 <template>
   <div flex gap-2 items-start>
-    <MujikaAuthorAside />
+    <MujikaAuthorAside un-hidden lg:block />
     <div flex="~ col grow" gap-2>
       <MujikaPostListItem
         :post="item"

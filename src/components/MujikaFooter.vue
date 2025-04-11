@@ -10,17 +10,22 @@
     gap-2
     items-center
   >
-    <div>Power by VitePress</div>
-    <div>
+    <div flex items-center>
+      <span>Power by&nbsp;</span>
+      <i class="i-logos:vue"></i>
+      <span>&nbsp;+&nbsp;</span>
+      <i class="i-logos:vitejs"></i>
+    </div>
+    <div text-center>
       <a
         target="_blank"
         href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
       >
         CC BY-NC-SA 4.0
       </a>
-      PRESENT © Dedicatus545
+      2021 - PRESENT © Dedicatus545
     </div>
-    <div text="[var(--mygo-c-text-2)]">
+    <div text="[var(--mygo-c-text-2)]" text-center>
       如果我和狗一样有尾巴的话，一定会藏不住这份喜悦，而尾巴一直摇个不停吧。
     </div>
   </footer>

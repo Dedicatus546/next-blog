@@ -8,7 +8,7 @@ const {
   pageSize?: number;
   total?: number;
 }>();
-const maxPageCount = 9;
+const maxPageCount = 5;
 
 const emits = defineEmits<{
   (e: "pageChange", page: number): void;
@@ -70,7 +70,7 @@ const pageChange = (page: number) => {
       class="mujika-pagination-button"
       @click="pageChange(page - 1)"
     >
-      上一页
+      <i class="i-mi:caret-left"></i>
     </button>
     <template v-for="item of pageCountRenderList" :key="item">
       <button
@@ -83,13 +83,12 @@ const pageChange = (page: number) => {
       </button>
       <div v-else>...</div>
     </template>
-
     <button
       :disabled="page >= pageCount"
       class="mujika-pagination-button"
       @click="pageChange(page + 1)"
     >
-      下一页
+      <i class="i-mi:caret-right"></i>
     </button>
   </div>
 </template>
@@ -102,9 +101,14 @@ const pageChange = (page: number) => {
     cursor: pointer;
     transition: background-color 0.3s ease;
 
-    &:hover,
+    &:disabled {
+      cursor: not-allowed;
+      color: var(--mygo-c-text-2);
+    }
+
+    &:not([disabled]):hover,
     &.active {
-      background-color: var(--mygo-c-bg);
+      background-color: var(--mygo-c-bg-alt);
     }
 
     &.active {

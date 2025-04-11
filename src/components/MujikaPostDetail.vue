@@ -53,7 +53,6 @@ onMounted(() => {
 <template>
   <div flex gap-2 items-start>
     <div flex="~ col grow" gap-2 min-w-0>
-      <MujikaTocHeader />
       <MujikaCard :padding-level="2">
         <div flex="~ col" mb-4 gap-4>
           <h1 text="34px center">{{ post.title }}</h1>
@@ -62,7 +61,13 @@ onMounted(() => {
         <div class="mujika-doc-content" ref="mujikaDocContentRef">
           <slot />
         </div>
-        <div flex="~ wrap" mt-8 gap-4 justify-center>
+        <div
+          flex="~ wrap"
+          text="[var(--mygo-c-text-2)]"
+          mt-8
+          gap-4
+          justify-center
+        >
           <div v-for="item of post.tags" :key="item">#{{ item }}</div>
         </div>
       </MujikaCard>
@@ -81,6 +86,9 @@ onMounted(() => {
       <MujikaGitTalk :key="post.hash" />
     </div>
     <MujikaTocAside un-hidden lg:block />
+    <Teleport to="body">
+      <MujikaFab />
+    </Teleport>
   </div>
 </template>
 

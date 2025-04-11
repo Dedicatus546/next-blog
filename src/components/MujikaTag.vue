@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useStore } from "@/stores/useRootStore";
+import { useRootStore } from "@/stores/useRootStore";
 
-const store = useStore();
+const rootStore = useRootStore();
 </script>
 
 <template>
   <div flex="~ wrap">
-    <div v-for="tag of store.tagList" :key="tag">#{{ tag }}</div>
+    <div v-for="tag of rootStore.tagList" :key="tag">#{{ tag }}</div>
   </div>
 </template>
 

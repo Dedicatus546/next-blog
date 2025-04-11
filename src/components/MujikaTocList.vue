@@ -7,6 +7,10 @@ const { prefix = "" } = defineProps<{
   prefix?: string;
 }>();
 
+const emits = defineEmits<{
+  (e: "click"): void;
+}>();
+
 const onAnchorClick = (e: MouseEvent) => {
   const anchorEl = e.target as HTMLAnchorElement;
   const href = anchorEl.href;
@@ -14,6 +18,7 @@ const onAnchorClick = (e: MouseEvent) => {
   const { hash } = url;
   history.replaceState({}, "", hash);
   navigate();
+  emits("click");
 };
 </script>
 
@@ -41,6 +46,7 @@ const onAnchorClick = (e: MouseEvent) => {
         v-if="item.children.length > 0"
         mt-2
         pl-3
+        @click="emits('click')"
       />
     </li>
   </ul>

@@ -1,5 +1,4 @@
 import "@unocss/reset/tailwind.css";
-import "floating-vue/dist/style.css";
 import "markdown-it-github-alerts/styles/github-colors-light.css";
 import "markdown-it-github-alerts/styles/github-colors-dark-class.css";
 import "markdown-it-github-alerts/styles/github-base.css";
@@ -8,7 +7,6 @@ import "shiki-magic-move/style.css";
 import "./styles/index.scss";
 import "uno.css";
 
-import FloatingVue from "floating-vue";
 import NProgress from "nprogress";
 import { ViteSSG } from "vite-ssg";
 import { routes } from "vue-router/auto-routes";
@@ -25,7 +23,6 @@ export const createApp = ViteSSG(
   { routes },
   // function to have custom setups
   ({ app, router, isClient }) => {
-    app.use(FloatingVue);
     app.use(pinia);
 
     if (isClient) {

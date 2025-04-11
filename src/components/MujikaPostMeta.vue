@@ -47,17 +47,17 @@ const time = computed(() => {
       </div>
       <div flex gap-1 items-center>
         <i class="i-fa6-regular:calendar"></i>
-        <span>发表于</span>
+        <span un-hidden lg:inline>发表于</span>
         <span pl-1>{{ date }}</span>
       </div>
       <div flex gap-1 items-center>
         <i class="i-fa6-regular:calendar-check"></i>
-        <span>更新于</span>
+        <span un-hidden lg:inline>更新于</span>
         <span pl-1>{{ updated }}</span>
       </div>
       <div flex gap-1 items-center>
         <i class="i-fa6-regular:folder"></i>
-        <span>分类于</span>
+        <span un-hidden lg:inline>分类于</span>
         <a
           pl-1
           :href="`/category/${item}`"
@@ -71,12 +71,12 @@ const time = computed(() => {
     <div flex="~ wrap" gap-3 justify-center>
       <div flex gap-1 items-center>
         <i class="i-fa6-regular:file-word"></i>
-        <span>总字数</span>
+        <span un-hidden lg:inline>总字数</span>
         <span pl-1>{{ formatedWordCount }}</span>
       </div>
       <div flex gap-1 items-center>
         <i class="i-fa6-regular:clock"></i>
-        <span>阅读时长 ≈</span>
+        <span un-hidden lg:inline>阅读时长 ≈</span>
         <span pl-1>{{ time }}</span>
       </div>
     </div>

@@ -25,10 +25,10 @@ const {
     <div
       v-if="hasPadding"
       :class="{
-        'p-4': paddingLevel === 1,
-        'p-8': paddingLevel === 2,
-        'p-12': paddingLevel === 3,
-        'p-16': paddingLevel === 4,
+        'p-2 lg:p-4': paddingLevel === 1,
+        'p-4 lg:p-8': paddingLevel === 2,
+        'p-6 lg:p-12': paddingLevel === 3,
+        'p-8 lg:p-16': paddingLevel === 4,
       }"
     >
       <slot></slot>

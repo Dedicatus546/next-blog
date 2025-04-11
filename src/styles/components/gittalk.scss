@@ -3,14 +3,13 @@
   --haruhikage-c-text: var(--mygo-c-text-1);
 
   .dark & {
-    --haruhikage-c-link: #0050b1;
+    --haruhikage-c-link: #3992fd;
   }
 }
 
 .haruhikage-doc {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
   color: var(--haruhikage-c-text);
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
