@@ -8,6 +8,7 @@ import "./styles/index.scss";
 import "uno.css";
 
 import NProgress from "nprogress";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import { ViteSSG } from "vite-ssg";
 import { routes } from "vue-router/auto-routes";
 import { setupRouterScroller } from "vue-router-better-scroller";
@@ -26,6 +27,7 @@ export const createApp = ViteSSG(
     app.use(pinia);
 
     if (isClient) {
+      pinia.use(piniaPluginPersistedstate);
       const html = document.querySelector("html")!;
       setupRouterScroller(router, {
         selectors: {

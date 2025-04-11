@@ -10,37 +10,37 @@ const router = useRouter();
 const post = usePost();
 const { prev, next } = usePostPrevAndNextPost(() => post.value.hash);
 
-useEventListener(window, "hashchange", navigate);
 const mujikaDocContentRef = useTemplateRef("mujikaDocContentRef");
-useEventListener(mujikaDocContentRef, "click", (e) => {
-  const target = e.target as HTMLElement;
-  const link = target.closest("a");
-  if (
-    !e.defaultPrevented &&
-    link &&
-    e.button === 0 &&
-    link.target !== "_blank" &&
-    link.rel !== "external" &&
-    !link.download &&
-    !e.metaKey &&
-    !e.ctrlKey &&
-    !e.shiftKey &&
-    !e.altKey
-  ) {
-    const url = new URL(link.href);
-    if (url.origin !== window.location.origin) return;
-    e.preventDefault();
-    const { pathname, hash } = url;
-    if (hash && (!pathname || pathname === location.pathname)) {
-      window.history.replaceState({}, "", hash);
-      navigate();
-    } else {
-      router.push({ path: pathname, hash });
-    }
-  }
-});
 
 onMounted(() => {
+  useEventListener(window, "hashchange", navigate);
+  useEventListener(mujikaDocContentRef, "click", (e) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest("a");
+    if (
+      !e.defaultPrevented &&
+      link &&
+      e.button === 0 &&
+      link.target !== "_blank" &&
+      link.rel !== "external" &&
+      !link.download &&
+      !e.metaKey &&
+      !e.ctrlKey &&
+      !e.shiftKey &&
+      !e.altKey
+    ) {
+      const url = new URL(link.href);
+      if (url.origin !== window.location.origin) return;
+      e.preventDefault();
+      const { pathname, hash } = url;
+      if (hash && (!pathname || pathname === location.pathname)) {
+        window.history.replaceState({}, "", hash);
+        navigate();
+      } else {
+        router.push({ path: pathname, hash });
+      }
+    }
+  });
   const doNavigate = () => {
     if (!navigate()) {
       setTimeout(doNavigate, 100);

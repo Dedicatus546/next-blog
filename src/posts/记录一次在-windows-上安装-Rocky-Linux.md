@@ -74,7 +74,7 @@ wsl --import Rocky9 E:\wsl\Rocky9 C:\Users\lwf16\Downloads\Rocky-9-Container-Bas
 
 我们需要在 `/etc` 下创建一个 `wsl.conf` 文件，然后写入以下内容：
 
-```conf
+```toml
 [boot]
 systemd=true
 ```
@@ -144,7 +144,7 @@ dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-co
 
 国内 Docker Hub 基本无法访问，所以我们需要通过代理来连接 Docker Hub 。在 systemd 的管理下，我们需要在 `/etc/systemd/system/docker.service.d` 文件夹下创建一个 `http-proxy.conf` 文件，然后写入：
 
-```conf
+```toml
 [Service]
 # 这里要写你的代理对应的 ip 值
 Environment="HTTP_PROXY=socks5://172.21.128.1:10808"
