@@ -18,6 +18,7 @@ export default defineConfig({
         display: "inline-block",
         height: "1em",
         width: "1em",
+        "vertical-align": "-0.125em",
       },
     }),
     presetWebFonts({

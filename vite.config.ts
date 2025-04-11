@@ -36,7 +36,13 @@ let markdownitAsyncInstance: MarkdownItAsync | undefined;
 export default defineConfig({
   envPrefix: "GITHUB_",
   optimizeDeps: {
-    include: ["vue", "vue-router", "@vueuse/core"],
+    include: [
+      "vue",
+      "vue-router",
+      "@vueuse/core",
+      "@vueuse/components",
+      "@vueuse/router",
+    ],
   },
   plugins: [
     vue({
@@ -198,7 +204,7 @@ export default defineConfig({
       extensions: [".vue", ".md"],
       routesFolder: [
         resolve(__dirname, "src", "pages"),
-        resolve(__dirname, "src", "test"),
+        resolve(__dirname, "src", "posts"),
       ],
       logs: true,
       async extendRoute(route) {
