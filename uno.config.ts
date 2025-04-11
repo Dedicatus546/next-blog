@@ -10,6 +10,12 @@ import {
 } from "unocss";
 
 export default defineConfig({
+  content: {
+    pipeline: {
+      // md 里面某些比如 app-index 会被错误解析 p-index
+      exclude: ["src/posts/*.md"],
+    },
+  },
   presets: [
     presetWind4({}),
     presetAttributify(),
