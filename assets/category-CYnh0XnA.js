@@ -1,1 +1,0 @@
-import{d as a,j as s,a as e,o as t,F as n,r as c,u,t as _}from"./app-I7hi7fN_.js";const i={flex:"~ wrap"},m=a({__name:"category",setup(p){const o=s();return(l,d)=>(t(),e("div",i,[(t(!0),e(n,null,c(u(o).categoryList,r=>(t(),e("div",{key:r},_(r),1))),128))]))}});export{m as default};
