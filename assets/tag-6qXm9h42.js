@@ -1,1 +1,0 @@
-import{d as a,j as s,a as t,o as e,F as n,r as c,u,t as _}from"./app-D6bDnq9u.js";const i={flex:"~ wrap"},m=a({__name:"tag",setup(p){const o=s();return(l,d)=>(e(),t("div",i,[(e(!0),t(n,null,c(u(o).tagList,r=>(e(),t("div",{key:r},_(r),1))),128))]))}});export{m as default};
