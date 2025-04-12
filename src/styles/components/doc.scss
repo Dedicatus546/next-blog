@@ -228,7 +228,7 @@
     position: relative;
     z-index: 1;
     margin: 0;
-    --uno: p-4;
+    --uno: p-2 lg:p-4;
     overflow-x: auto;
     border: 1px solid var(--mygo-c-border);
     border-radius: var(--mygo-border-radius-small);
