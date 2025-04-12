@@ -1,0 +1,1 @@
+{"version":3,"file":"about-CXzU4XI7.js","sources":["../../src/pages/about.vue"],"sourcesContent":["<script setup lang=\"ts\"></script>\n\n<template>\n  <div>about</div>\n</template>\n\n<style lang=\"scss\" scoped></style>"],"names":["_sfc_render","_ctx","_cache"],"mappings":"2UAGE,SAAAA,EAAAC,EAAAC,EAAA"}
