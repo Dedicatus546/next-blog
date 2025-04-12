@@ -21,8 +21,9 @@ defineProps<{
     <img
       flex="shrink-0"
       rounded-6px
-      w-60px
+      w-45px
       aspect-ratio-square
+      lg:w-60px
       :src="comment.user.avatar_url"
       :alt="`${comment.user.login}的头像`"
     />

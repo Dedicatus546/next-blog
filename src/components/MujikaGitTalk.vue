@@ -103,8 +103,9 @@ onMounted(async () => {
       <img
         v-if="mujikaGitTalkStore.isLogin"
         rounded-6px
-        w-60px
+        w-45px
         aspect-ratio-square
+        lg:w-60px
         flex="shrink-0"
         src="https://avatars.githubusercontent.com/u/48575405?v=4"
         alt="Dedicatus545的头像"
@@ -128,8 +129,9 @@ onMounted(async () => {
           placeholder="万水千山总是情，留下评论行不行"
           class="mujika-git-talk-textarea"
           un-disabled:cursor-not-allowed
-          p-4
+          p-2
           outline-0
+          lg:p-4
         />
         <div flex items-start justify-between>
           <a
