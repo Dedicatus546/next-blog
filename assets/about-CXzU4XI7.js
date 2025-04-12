@@ -1,2 +1,0 @@
-import{createElementBlock as o,openBlock as t}from"vue";import{_ as r}from"./app-xo0Ya-nB.js";import"nprogress";import"pinia-plugin-persistedstate";import"vue-router";import"vue-router-better-scroller";import"@vueuse/core";import"@vueuse/components";import"@vueuse/router";import"octokit";import"pinia";import"date-fns";const m={};function i(p,e){return t(),o("div",null,"about")}const B=r(m,[["render",i]]);export{B as default};
-//# sourceMappingURL=about-CXzU4XI7.js.map
