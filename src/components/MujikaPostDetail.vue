@@ -55,7 +55,7 @@ onMounted(() => {
     <div flex="~ col grow" gap-2 min-w-0>
       <MujikaCard :padding-level="2">
         <div flex="~ col" mb-4 gap-4>
-          <h1 text="34px center">{{ post.title }}</h1>
+          <h1 break-all text="34px center">{{ post.title }}</h1>
         </div>
         <MujikaPostMeta :page="post"></MujikaPostMeta>
         <div class="mujika-doc-content" ref="mujikaDocContentRef">
