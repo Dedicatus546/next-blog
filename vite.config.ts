@@ -209,7 +209,7 @@ export default defineConfig(({ mode }) => {
         extensions: [".vue", ".md"],
         routesFolder: [
           resolve(__dirname, "src", "pages"),
-          resolve(__dirname, "src", mode === "development" ? "test" : "test"),
+          resolve(__dirname, "src", mode === "development" ? "test" : "posts"),
         ],
         async extendRoute(route) {
           await buildRouteMeta(route, markdownitAsyncInstance!);
