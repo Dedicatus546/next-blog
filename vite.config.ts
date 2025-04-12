@@ -275,7 +275,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      sourcemap: true,
+      // sourcemap: true,
       rollupOptions: {
         external: [
           "vue",
