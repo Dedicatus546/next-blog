@@ -64,7 +64,7 @@ const pageChange = (page: number) => {
 </script>
 
 <template>
-  <div flex gap-4 justify-center class="mujika-pagination">
+  <div flex gap-2 justify-center lg:gap-4 class="mujika-pagination">
     <button
       :disabled="page <= 1"
       class="mujika-pagination-button"
@@ -96,7 +96,7 @@ const pageChange = (page: number) => {
 <style lang="scss" scoped>
 .mujika-pagination {
   .mujika-pagination-button {
-    --uno: px-3 py-1;
+    --uno: "px-2 lg:px-3 lg:py-1";
     border-radius: var(--mygo-border-radius-base);
     cursor: pointer;
     transition: background-color 0.3s ease;
