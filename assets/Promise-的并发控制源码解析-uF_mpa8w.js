@@ -87,4 +87,3 @@ import{createElementBlock as n,openBlock as p,createStaticVNode as t}from"vue";i
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">  }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><p>这里我们使用两个池子来表示，一个是正在执行的“池子”，一个是等待中的“池子”</p><p>每次我们添加一个 <code>Promise</code> 时，如果此时正在执行的“池子”还有位置，那么直接放入执行即可</p><p>如果此时正在执行的池子没位置了，我们就先放入等待池子中</p><p>当正在执行的“池子”中某一个 <code>Promise</code> 执行完毕之后，我们需要删除执行“池子”中对应的 <code>Promise</code></p><p>然后我们需要判断，如果此时等待“池子”中有未处理的 <code>Promise</code> ，那么就可以加入执行“池子”中开始执行</p><p>和上面版本对比的话，缺点就是没法使用 <code>for await</code> 了，适合零散的 <code>Promise</code> 的并发控制</p>`,38)])))}};export{P as categories,x as date,_ as default,b as key,T as meta,f as tags,C as title,v as updated,w as wordCount};
-//# sourceMappingURL=Promise-的并发控制源码解析-uF_mpa8w.js.map

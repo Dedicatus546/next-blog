@@ -281,4 +281,3 @@ import{createElementBlock as n,openBlock as p,createStaticVNode as t}from"vue";i
 <span class="line"><span>// c对象改变触发了effect</span></span>
 <span class="line"><span>&#39;index&#39;</span></span>
 <span class="line"><span>&#39;index --- computed&#39;</span></span></code></pre><p>至此，<code>computed</code>API的基本流程基本上就讲完了。不得不说实现上确实很巧妙，用到了很多的闭包。</p><h1 id="后记" tabindex="-1">后记 <a class="header-anchor" href="#后记">🔗</a></h1><p>还差最后一个<code>readonly</code>API了，这个和<code>reactive</code>差不多，这几天应该就可以写出来了，如果我写的有错，希望可以指出，非常感谢！~</p>`,71)])))}};export{O as categories,v as date,V as default,C as key,R as meta,T as tags,F as title,b as updated,x as wordCount};
-//# sourceMappingURL=Vue3-0Reactivity之computed-CNisL06p.js.map

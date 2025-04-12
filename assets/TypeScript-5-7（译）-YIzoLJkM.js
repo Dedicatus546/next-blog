@@ -195,4 +195,3 @@ import{createElementBlock as n,openBlock as t,createStaticVNode as p}from"vue";i
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">//                 ~~~~~~~~~~</span></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">// error TS7011: Function expression, which lacks return-type annotation, implicitly has an &#39;any&#39; return type.</span></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">// 缺乏返回类型注释的函数默认有一个隐式的 any 返回类型</span></span></code></pre>`,95)])))}};export{E as categories,v as date,T as default,F as key,x as meta,q as tags,C as title,j as updated,S as wordCount};
-//# sourceMappingURL=TypeScript-5-7（译）-YIzoLJkM.js.map

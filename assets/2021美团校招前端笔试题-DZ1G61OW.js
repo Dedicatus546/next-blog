@@ -188,4 +188,3 @@ import{createElementBlock as n,openBlock as t,createStaticVNode as l}from"vue";i
 <span class="line"><span style="--s-dark:#4D9375;--s-light:#1E754F;">        return</span><span style="--s-dark:#DBD7CAEE;--s-light:#393A34;"> result </span><span style="--s-dark:#CB7676;--s-light:#AB5959;">%</span><span style="--s-dark:#4C9A91;--s-light:#2F798A;"> 1000000000</span><span style="--s-dark:#666666;--s-light:#999999;">;</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><h1 id="后记" tabindex="-1">后记 <a class="header-anchor" href="#后记">🔗</a></h1><p>总体上感觉很好，难度适中，下次一定还来😂</p>`,53)])))}};export{v as categories,F as date,T as default,m as key,I as meta,w as tags,x as title,f as updated,S as wordCount};
-//# sourceMappingURL=2021美团校招前端笔试题-DZ1G61OW.js.map

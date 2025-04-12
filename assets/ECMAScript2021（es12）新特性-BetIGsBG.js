@@ -82,4 +82,3 @@ import{createElementBlock as n,openBlock as l,createStaticVNode as t}from"vue";i
 <span class="line"></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">// 强制等待</span></span>
 <span class="line"><span style="--s-dark:#80A665;--s-light:#59873A;">setTimeout</span><span style="--s-dark:#666666;--s-light:#999999;">(()</span><span style="--s-dark:#666666;--s-light:#999999;"> =&gt;</span><span style="--s-dark:#666666;--s-light:#999999;"> {},</span><span style="--s-dark:#4C9A91;--s-light:#2F798A;"> 5000</span><span style="--s-dark:#666666;--s-light:#999999;">);</span></span></code></pre><p>注意这里的回调函数的值<strong>不是</strong>持有的对象，而是在 <code>register</code> 的时候第二个参数的值，从 <code>FinalizationRegistry</code> 的定义上说，回调执行的时候持有的对象已被回收，此时如果再出现在回调参数中也是不对的。</p>`,33)])))}};export{x as categories,v as date,S as default,j as key,E as meta,F as tags,b as title,q as updated,P as wordCount};
-//# sourceMappingURL=ECMAScript2021（es12）新特性-BetIGsBG.js.map

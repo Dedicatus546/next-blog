@@ -89,4 +89,3 @@ import{createElementBlock as n,openBlock as t,createStaticVNode as p}from"vue";i
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">        };</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><p>到这里其实基本就完成了<br> 最后就是重新打包这个文件<br><code>asar pack app app.asar</code><br> 替换之后就完成了</p><p>附上一张截图</p><p><img src="https://i.loli.net/2020/03/05/3uXfOKYQwC59s6r.png" alt=""></p><p>仅供学习使用，请勿使用于商业用途。</p>`,54)])))}};export{F as categories,v as date,w as default,E as key,q as meta,L as tags,f as title,S as updated,M as wordCount};
-//# sourceMappingURL=记一次对StarUML-3-2-2的解包-Be68JmKA.js.map

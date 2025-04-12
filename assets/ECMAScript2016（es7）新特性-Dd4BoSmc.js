@@ -7,4 +7,3 @@ import{createElementBlock as t,openBlock as e,createStaticVNode as n}from"vue";i
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">  // 存在被查找的元素</span></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">  // ...</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><p>整体下来更加的简洁，也不会出现<code>-1</code>这种魔法值。</p><p>比如以后如果规范抽风了，把<code>indexOf</code>没找到值的情况下返回数组的<code>length</code>的话，那么原来的代码就会出现运行的逻辑错误。</p><p>并且需要注意的是，<code>indexOf</code>不支持对<code>NaN</code>的查找，而<code>includes</code>支持。</p><p><img src="https://i.loli.net/2020/08/18/fgyVT8uWMPLIxb4.png" alt=""></p><p><code>indexOf</code>返回了<code>-1</code>，而<code>includes</code>返回了<code>true</code>。</p>`,21)])))}};export{M as categories,x as date,w as default,v as key,_ as meta,E as tags,u as title,F as updated,S as wordCount};
-//# sourceMappingURL=ECMAScript2016（es7）新特性-Dd4BoSmc.js.map

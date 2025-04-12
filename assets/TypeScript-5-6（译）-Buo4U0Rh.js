@@ -223,4 +223,3 @@ import{createElementBlock as n,openBlock as t,createStaticVNode as p}from"vue";i
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">//  ~~~~~</span></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">// error under noImplicitOverride: This member must have an &#39;override&#39; modifier because it overrides a member in the base class &#39;Base&#39;.</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><p>感谢 <a href="https://github.com/a-tarasyuk" target="_blank" rel="noopener">Oleksandr Tarasiuk</a> 修复了这个问题，相关的 <a href="https://github.com/microsoft/TypeScript/pull/57146" target="_blank" rel="noopener">PR</a> 。</p>`,139)])))}};export{v as categories,F as date,I as default,x as key,q as meta,E as tags,m as title,S as updated,T as wordCount};
-//# sourceMappingURL=TypeScript-5-6（译）-Buo4U0Rh.js.map

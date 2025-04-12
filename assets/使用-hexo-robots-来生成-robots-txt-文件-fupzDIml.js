@@ -28,4 +28,3 @@ import{createElementBlock as t,openBlock as n,createStaticVNode as e}from"vue";i
 <span class="line"><span style="--s-dark:#B8A965;--s-light:#998418;">        data</span><span style="--s-dark:#666666;--s-light:#999999;">: </span><span style="--s-dark:#C98A7D77;--s-light:#B5695977;">&quot;</span><span style="--s-dark:#C98A7D;--s-light:#B56959;">{{文件内容}}</span><span style="--s-dark:#C98A7D77;--s-light:#B5695977;">&quot;</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">});</span></span></code></pre>`,25)])))}};export{_ as categories,w as date,Z as default,v as key,T as meta,C as tags,u as title,E as updated,q as wordCount};
-//# sourceMappingURL=使用-hexo-robots-来生成-robots-txt-文件-fupzDIml.js.map

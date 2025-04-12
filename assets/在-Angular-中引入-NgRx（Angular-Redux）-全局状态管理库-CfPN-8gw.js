@@ -303,4 +303,3 @@ import{createElementBlock as n,openBlock as p,createStaticVNode as l}from"vue";i
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">  }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><p>然后我们点击登录，就可以看到 <code>Action</code> 的变化了</p><p><img src="https://fastly.jsdelivr.net/gh/Dedicatus546/image@main/2022/07/05/202207051713256.gif" alt=""></p>`,118)])))}};export{v as categories,x as date,L as default,F as key,w as meta,R as tags,E as title,b as updated,S as wordCount};
-//# sourceMappingURL=在-Angular-中引入-NgRx（Angular-Redux）-全局状态管理库-CfPN-8gw.js.map

@@ -493,4 +493,3 @@ import{createElementBlock as n,openBlock as l,createStaticVNode as p}from"vue";i
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span>
 <span class="line"></span>
 <span class="line"><span style="--s-dark:#B8A965;--s-light:#998418;">module</span><span style="--s-dark:#666666;--s-light:#999999;">.</span><span style="--s-dark:#B8A965;--s-light:#998418;">exports</span><span style="--s-dark:#666666;--s-light:#999999;"> =</span><span style="--s-dark:#BD976A;--s-light:#B07D48;"> MyPromise</span><span style="--s-dark:#666666;--s-light:#999999;">;</span></span></code></pre><p>附上自己地测试截图</p><p><img src="https://i.loli.net/2020/04/19/JZpKVgueaFxycwH.png" alt=""></p>`,83)])))}};export{F as categories,b as date,q as default,E as key,x as meta,P as tags,v as title,j as updated,R as wordCount};
-//# sourceMappingURL=手写一个Promise并通过Promise-A-规范测试-NHR3WR--.js.map

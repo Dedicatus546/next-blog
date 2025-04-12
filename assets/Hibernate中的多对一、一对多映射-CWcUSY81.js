@@ -79,4 +79,3 @@ import{createElementBlock as n,openBlock as t,createStaticVNode as l}from"vue";i
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span>
 <span class="line"></span></code></pre><p>运行之后 就可以看到</p><p>Teacher表</p><p><img src="https://i.loli.net/2019/11/07/THICmyLYuxnXwM1.png" alt=""></p><p>Student表</p><p><img src="https://i.loli.net/2019/11/07/JghAep67vrxfUBa.png" alt=""></p><p>Student表中的外键</p><p><img src="https://i.loli.net/2019/11/07/hptKj8J7sEDmiXb.png" alt=""></p><h1 id="后记" tabindex="-1">后记 <a class="header-anchor" href="#后记">🔗</a></h1><p>多对一还好 不是特别的难理解</p>`,25)])))}};export{f as date,x as default,q as key,S as meta,v as tags,b as title,F as updated,T as wordCount};
-//# sourceMappingURL=Hibernate中的多对一、一对多映射-CWcUSY81.js.map

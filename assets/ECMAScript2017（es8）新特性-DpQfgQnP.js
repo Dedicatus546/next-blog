@@ -23,4 +23,3 @@ import{createElementBlock as t,openBlock as n,createStaticVNode as p}from"vue";i
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">//     configurable: true </span></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">//   }</span></span>
 <span class="line"><span style="--s-dark:#758575DD;--s-light:#A0ADA0;">// }</span></span></code></pre>`,24)])))}};export{E as categories,j as date,F as default,u as key,w as meta,x as tags,m as title,S as updated,O as wordCount};
-//# sourceMappingURL=ECMAScript2017（es8）新特性-DpQfgQnP.js.map

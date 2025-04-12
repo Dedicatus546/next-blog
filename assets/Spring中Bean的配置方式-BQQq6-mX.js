@@ -134,4 +134,3 @@ import{createElementBlock as l,openBlock as p,createElementVNode as s,createStat
 <span class="line"><span style="--s-dark:#BD976A;--s-light:#B07D48;">        applicationContext</span><span style="--s-dark:#666666;--s-light:#999999;">.</span><span style="--s-dark:#80A665;--s-light:#59873A;">close</span><span style="--s-dark:#666666;--s-light:#999999;">();</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">    }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">}</span></span></code></pre><p>发现可以注入成功 <img src="https://i.loli.net/2019/11/21/ozgwtOiHRxqdjDe.png" alt=""></p>`,40)])))}};export{w as date,U as default,x as key,R as meta,F as tags,q as title,v as updated,S as wordCount};
-//# sourceMappingURL=Spring中Bean的配置方式-BQQq6-mX.js.map

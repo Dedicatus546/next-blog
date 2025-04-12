@@ -251,4 +251,3 @@ import{createElementBlock as n,openBlock as l,createStaticVNode as t}from"vue";i
 <span class="line"><span style="--s-dark:#BD976A;--s-light:#B07D48;">    mutations</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">  }</span></span>
 <span class="line"><span style="--s-dark:#666666;--s-light:#999999;">})</span></span></code></pre><p>只能说人还是太能折腾了哈哈哈哈哈哈，不过折腾的最终目标都是为了产出更加优秀的代码</p><p>这点我觉得是非常重要的，希望<code>Vue</code>越来越好~~~</p>`,133)])))}};export{x as categories,v as date,V as default,E as key,j as meta,M as tags,b as title,F as updated,w as wordCount};
-//# sourceMappingURL=Vuex-next源码解析-module-collection篇-C25TsvvG.js.map
