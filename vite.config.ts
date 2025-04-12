@@ -234,28 +234,23 @@ export default defineConfig(({ mode }) => {
             {
               tag: "script",
               attrs: {
-                type: "importMap",
+                type: "importmap",
               },
               children: JSON.stringify({
                 imports: {
-                  vue: "https://cdn.jsdelivr.net/npm/vue/+esm",
-                  "vue-router": "https://cdn.jsdelivr.net/npm/vue-router/+esm",
-                  pinia: "https://cdn.jsdelivr.net/npm/pinia/+esm",
-                  "@vueuse/core":
-                    "https://cdn.jsdelivr.net/npm/@vueuse/core/+esm",
-                  "@vueuse/components":
-                    "https://cdn.jsdelivr.net/npm/@vueuse/components/+esm",
-                  "@vueuse/router":
-                    "https://cdn.jsdelivr.net/npm/@vueuse/router/+esm",
-                  "@vueuse/shared":
-                    "https://cdn.jsdelivr.net/npm/@vueuse/shared/+esm",
-                  "date-fns": "https://cdn.jsdelivr.net/npm/date-fns/+esm",
-                  nprogress: "https://cdn.jsdelivr.net/npm/nprogress/+esm",
-                  octokit: "https://cdn.jsdelivr.net/npm/octokit/+esm",
+                  vue: "https://esm.sh/vue",
+                  "vue-router": "https://esm.sh/vue-router",
+                  pinia: "https://esm.sh/pinia",
+                  "@vueuse/core": "https://esm.sh/@vueuse/core",
+                  "@vueuse/components": "https://esm.sh/@vueuse/components",
+                  "@vueuse/router": "https://esm.sh/@vueuse/router",
+                  "date-fns": "https://esm.sh/date-fns",
+                  nprogress: "https://esm.sh/nprogress",
+                  octokit: "https://esm.sh/octokit",
                   "pinia-plugin-persistedstate":
-                    "https://cdn.jsdelivr.net/npm/pinia-plugin-persistedstate/+esm",
+                    "https://esm.sh/pinia-plugin-persistedstate",
                   "vue-router-better-scroller":
-                    "https://cdn.jsdelivr.net/npm/vue-router-better-scroller/+esm",
+                    "https://esm.sh/vue-router-better-scroller",
                 },
               }),
             },
@@ -280,6 +275,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
+      sourcemap: true,
       rollupOptions: {
         external: [
           "vue",
