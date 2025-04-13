@@ -72,12 +72,18 @@ onMounted(() => {
         </div>
       </MujikaCard>
       <MujikaCard :padding-level="2" v-if="prev || next">
-        <div flex>
-          <RouterLink :to="prev.path" v-if="prev">
+        <div flex="~ wrap" gap-4>
+          <RouterLink :to="prev.path" v-if="prev" truncate :title="prev.title">
             <i class="i-mi:chevron-left" mr-1></i>
             <span>{{ prev.title }}</span>
           </RouterLink>
-          <RouterLink :to="next.path" ml-auto v-if="next">
+          <RouterLink
+            :to="next.path"
+            ml-auto
+            v-if="next"
+            truncate
+            :title="next.title"
+          >
             <span>{{ next.title }}</span>
             <i class="i-mi:chevron-right" ml-1></i>
           </RouterLink>
