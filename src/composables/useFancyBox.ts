@@ -1,4 +1,5 @@
-import FancyApps from "@fancyapps/ui";
+// 这个包似乎在导入上有点问题。。。
+import * as FancyApps from "@fancyapps/ui";
 
 const { Fancybox } = FancyApps;
 
