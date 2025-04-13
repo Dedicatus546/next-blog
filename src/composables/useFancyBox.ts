@@ -1,4 +1,6 @@
-import { Fancybox } from "@fancyapps/ui";
+import FancyApps from "@fancyapps/ui";
+
+const { Fancybox } = FancyApps;
 
 export const useFancyBox = (
   containerRef: MaybeRefOrGetter<HTMLElement | null>,
