@@ -182,6 +182,23 @@ export default defineConfig(({ mode }) => {
 
           md.use(markdownFrontmatterPlugin);
 
+          md.use((md) => {
+            const defaultImageRender = md.renderer.rules.image;
+            md.renderer.rules.image = function (
+              tokens,
+              idx,
+              options,
+              env,
+              self,
+            ) {
+              // 获取图片的 `src` 属性
+              const token = tokens[idx];
+              const srcIndex = token.attrIndex("src");
+              const src = token.attrs?.[srcIndex][1];
+              return `<a data-fancybox="doc-gallery" href="${src}" target="_blank" rel="noopener noreferrer">${defaultImageRender?.(tokens, idx, options, env, self)}</a>`;
+            };
+          });
+
           markdownitAsyncInstance = md;
         },
         // frontmatterPreprocess(frontmatter, options, id, defaults) {

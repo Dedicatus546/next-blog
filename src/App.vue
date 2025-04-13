@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import MujikaFooter from "./components/MujikaFooter.vue";
 import MujikaHeader from "./components/MujikaHeader.vue";
+import { useFancyBox } from "./composables/useFancyBox";
 import { PageType } from "./types";
+
+const mainRef = useTemplateRef("mainRef");
+
+useFancyBox(mainRef);
 </script>
 
 <template>
@@ -15,6 +20,7 @@ import { PageType } from "./types";
       p-2
       w-full
       un-2xl:w="[calc(96rem-var(--spacing)*2)]"
+      ref="mainRef"
     >
       <RouterView>
         <template #default="{ Component, route }">
