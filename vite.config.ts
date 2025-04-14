@@ -29,16 +29,22 @@ import { markdownFrontmatterPlugin } from "./scripts/markdownFrontmatterPlugin";
 import { MarkdownItAsync } from "markdown-it-async";
 import vueDevTools from "vite-plugin-vue-devtools";
 import generateSitemap from "vite-ssg-sitemap";
+import { loadEnv } from "vite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const envDir = resolve(__dirname, "env");
+const envPrefix = ["P9_", "GITHUB_"];
 
 let markdownitAsyncInstance: MarkdownItAsync | undefined;
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const isProd = mode === "production";
+  const env = loadEnv(mode, envDir, envPrefix);
+  console.log("env", env);
   return {
-    envPrefix: "GITHUB_",
+    envDir,
+    envPrefix,
     optimizeDeps: {
       include: [
         "vue",
