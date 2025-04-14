@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly GITHUB_CLIENT_SECRET: string;
   readonly GITHUB_REPO: string;
   readonly GITHUB_OWNER: string;
+  readonly P9_PAGESIZE: string;
   // 更多环境变量...
 }
 

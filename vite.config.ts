@@ -29,6 +29,7 @@ import { markdownFrontmatterPlugin } from "./scripts/markdownFrontmatterPlugin";
 import { MarkdownItAsync } from "markdown-it-async";
 import vueDevTools from "vite-plugin-vue-devtools";
 import generateSitemap from "vite-ssg-sitemap";
+import { insertPageRoutes } from "./scripts/insertPageRoutes";
 import { loadEnv } from "vite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -55,6 +56,24 @@ export default defineConfig(({ mode }) => {
       ],
     },
     plugins: [
+      vueRouter({
+        extensions: [".vue", ".md"],
+        exclude: [resolve(__dirname, "src", "pages", "pages.vue")],
+        routesFolder: [
+          resolve(__dirname, "src", "pages"),
+          resolve(__dirname, env["P9_POST_DIR"]),
+        ],
+        async extendRoute(route) {
+          await buildRouteMeta(route, markdownitAsyncInstance!);
+        },
+        async beforeWriteFiles(rootRoute) {
+          insertPageRoutes(
+            rootRoute,
+            Number.parseInt(env["P9_PAGESIZE"]),
+            env["P9_POST_DIR"],
+          );
+        },
+      }),
       vue({
         include: [/\.vue$/, /\.md$/],
       }),
@@ -226,19 +245,6 @@ export default defineConfig(({ mode }) => {
         //   })();
         //   const head = defaults(frontmatter, options);
         //   return { head, frontmatter };
-        // },
-      }),
-      vueRouter({
-        extensions: [".vue", ".md"],
-        routesFolder: [
-          resolve(__dirname, "src", "pages"),
-          resolve(__dirname, "src", mode === "development" ? "test" : "posts"),
-        ],
-        async extendRoute(route) {
-          await buildRouteMeta(route, markdownitAsyncInstance!);
-        },
-        // async beforeWriteFiles(rootRoute) {
-        // rewriteRoutePath(rootRoute);
         // },
       }),
       inspect(),

@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { useRootStore } from "@/stores/useRootStore";
 
+const router = useRouter();
+
 const store = useRootStore();
 
-const { onPageChange, state } = store;
+const { state } = store;
 const { renderList } = storeToRefs(store);
+
+const onPageChange = (page: number) => {
+  router.push("/pages/" + page);
+};
 </script>
 
 <template>

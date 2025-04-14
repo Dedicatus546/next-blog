@@ -13,7 +13,7 @@ export default defineConfig({
   content: {
     pipeline: {
       // md 里面某些比如 app-index 会被错误解析 p-index
-      exclude: ["src/posts/*.md"],
+      exclude: ["posts/*.md", "dev-posts/*.md"],
     },
   },
   presets: [

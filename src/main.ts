@@ -18,6 +18,8 @@ import App from "./App.vue";
 import pinia from "./stores";
 import { type MarkdownPage, PageType } from "./types";
 
+console.log("routes", routes);
+
 export const createApp = ViteSSG(
   // the root component
   App,

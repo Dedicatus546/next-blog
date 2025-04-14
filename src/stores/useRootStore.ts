@@ -14,12 +14,34 @@ export const useRootStore = defineStore("root-store", () => {
     list: [],
     pagination: {
       page: 1,
-      pageSize: 10,
+      pageSize: Number.parseInt(import.meta.env.P9_PAGESIZE),
       total: 0,
     },
   });
 
   const router = useRouter();
+  const route = useRoute();
+
+  // TODO 下面两个函数功能重复，或许可以提取出来
+  const initPage = (route: ReturnType<typeof useRoute>) => {
+    if (route.path === "/") {
+      state.pagination.page = 1;
+    } else if (/pages\/\d+/.test(route.path)) {
+      const page = Number.parseInt(
+        route.path.slice(route.path.lastIndexOf("/") + 1),
+      );
+      state.pagination.page = page;
+    }
+  };
+
+  router.beforeEach((to) => {
+    if (to.path === "/") {
+      state.pagination.page = 1;
+    } else if (/pages\/\d+/.test(to.path)) {
+      const page = Number.parseInt(to.path.slice(to.path.lastIndexOf("/") + 1));
+      state.pagination.page = page;
+    }
+  });
 
   const init = () => {
     const routeList = router.getRoutes();
@@ -34,11 +56,8 @@ export const useRootStore = defineStore("root-store", () => {
         return new Date(bPage.date).getTime() - new Date(aPage.date).getTime();
       })
       .map((item) => item.meta.page as MarkdownPage);
-    state.pagination.pageSize = Math.min(
-      state.pagination.pageSize,
-      state.list.length,
-    );
     state.pagination.total = state.list.length;
+    initPage(route);
   };
 
   init();
