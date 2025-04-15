@@ -17,6 +17,7 @@
     "@vueuse/router": "^13.1.0",
     "date-fns": "^4.1.0",
     "floating-vue": "^5.2.2",
+    "gqlmin": "^0.2.2",
     "nprogress": "^0.2.0",
     "octokit": "^4.1.3",
     "pinia": "^3.0.2",
