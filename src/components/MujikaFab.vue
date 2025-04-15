@@ -31,7 +31,7 @@ const closeTocOverlay = () => {
       <MujikaTocList :list="tocList" @click="closeTocOverlay" />
     </MujikaCard>
   </div>
-  <div flex="~ col" gap-2 bottom-24 right-4 fixed z-10>
+  <div flex="~ col" gap-2 bottom-4 right-4 fixed z-10>
     <button
       bg="[var(--mygo-c-bg)]"
       shadow="[var(--mygo-shadow-1)]"

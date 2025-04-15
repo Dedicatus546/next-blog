@@ -23,12 +23,14 @@ const mujikaGitTalkStore = useMujikaGitTalkStore();
 
 const state = reactive({
   loading: false,
-  issue: null as GithubIssue | null,
+  submitLoading: false,
+  createLoading: false,
+  issue: undefined as GithubIssue | undefined | null,
   comment: "",
   commentList: [] as Array<GithubIssueComment>,
   pagination: {
     page: 1,
-    cursor: null as string | null,
+    cursor: undefined as string | undefined,
     pageSize: 10,
     total: 0,
   },
@@ -43,14 +45,16 @@ const getCommentList = async () => {
   if (!state.issue) {
     state.issue = await getIssueByLabelApi(post.value.key);
   }
-  const { list, pageInfo } = await loadIssueCommentListApi({
-    issueNumber: state.issue!.number,
-    cursor: state.pagination.cursor!,
-    pageSize: state.pagination.pageSize,
-  });
-  state.pagination.total = state.issue!.commentCount;
-  state.commentList.push(...list);
-  state.pagination.cursor = pageInfo.cursor;
+  if (state.issue) {
+    const { list, pageInfo } = await loadIssueCommentListApi({
+      issueNumber: state.issue!.number,
+      cursor: state.pagination.cursor!,
+      pageSize: state.pagination.pageSize,
+    });
+    state.pagination.total = state.issue!.commentCount;
+    state.commentList.push(...list);
+    state.pagination.cursor = pageInfo.cursor;
+  }
   state.loading = false;
 };
 
@@ -64,12 +68,20 @@ const submit = async () => {
   if (!state.comment) {
     return;
   }
+  state.submitLoading = true;
   const comment = await createIssueCommentApi({
     issueNodeId: state.issue!.nodeId,
     content: state.comment,
   });
   state.comment = "";
   state.commentList.unshift(comment);
+  state.submitLoading = false;
+};
+
+const createIssue = () => {
+  state.createLoading = true;
+
+  state.createLoading = false;
 };
 
 onMounted(async () => {
@@ -88,8 +100,14 @@ onMounted(async () => {
   }
 
   if (mujikaGitTalkStore.state.accessToken) {
-    const res = await getUserInfoApi(mujikaGitTalkStore.state.accessToken);
     setOctokitAuth(mujikaGitTalkStore.state.accessToken);
+  }
+
+  if (
+    mujikaGitTalkStore.state.user === null &&
+    mujikaGitTalkStore.state.accessToken
+  ) {
+    const res = await getUserInfoApi(mujikaGitTalkStore.state.accessToken);
     mujikaGitTalkStore.state.user = res;
   }
 
@@ -122,7 +140,7 @@ onMounted(async () => {
       >
         <i text-40px text="[#999]" class="i-fa6-regular:user"></i>
       </div>
-      <div flex="~ col grow" gap-4>
+      <div flex="~ col grow" gap-2 lg:gap-4>
         <textarea
           :disabled="!mujikaGitTalkStore.isLogin"
           v-model="state.comment"
@@ -133,29 +151,30 @@ onMounted(async () => {
           outline-0
           lg:p-4
         />
-        <div flex items-start justify-between>
+        <div flex items-start>
           <a
             target="_blank"
             href="https://guides.github.com/features/mastering-markdown/"
           >
             支持 Markdown 语法
           </a>
-          <button
+          <div ml-auto></div>
+          <MujikaButton
+            mr-2
+            lg:mr-4
+            v-if="mujikaGitTalkStore.isAuthor && state.issue === null"
+            @click="createIssue"
+          >
+            创建 issue
+          </MujikaButton>
+          <MujikaButton
             v-if="mujikaGitTalkStore.isLogin"
-            class="mujika-git-talk-button"
-            cursor-pointer
+            :loading="state.submitLoading"
             @click="submit"
           >
             发送
-          </button>
-          <button
-            v-else
-            class="mujika-git-talk-button"
-            cursor-pointer
-            @click="toLogin"
-          >
-            点击登录
-          </button>
+          </MujikaButton>
+          <MujikaButton v-else @click="toLogin">点击登录</MujikaButton>
         </div>
       </div>
     </div>

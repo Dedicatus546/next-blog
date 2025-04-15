@@ -1,9 +1,19 @@
-import type { Arrayable } from "@vueuse/core";
 import { Octokit } from "octokit";
 
 import type { GithubIssue, GithubIssueComment, GithubUser } from "@/types";
 
 let octokit = new Octokit();
+
+// 一个模板字符串辅助函数，让 octokit.graphql 支持模板字符语法
+const graphql = (
+  strings: TemplateStringsArray,
+  variables?: Record<string, any>,
+) => {
+  return {
+    query: strings[0],
+    variables,
+  };
+};
 
 export const getAccessTokenApi = async (query: {
   code: string;
@@ -32,14 +42,19 @@ export const getAccessTokenApi = async (query: {
   }>;
 };
 
-export const getUserInfoApi = async (accessToken: string) => {
-  const res = await fetch("https://api.github.com/user", {
-    method: "GET",
-    headers: {
-      authorization: `bearer ${accessToken}`,
-    },
-  });
-  return res.json() as Promise<GithubUser>;
+export const getUserInfoApi = async () => {
+  const res = await octokit.graphql<{
+    viewer: GithubUser;
+  }>(graphql`
+    query {
+      viewer {
+        id
+        login
+        avatarUrl
+      }
+    }
+  `);
+  return res.viewer;
 };
 
 export const setOctokitAuth = (accessToken: string) => {
@@ -49,12 +64,26 @@ export const setOctokitAuth = (accessToken: string) => {
 };
 
 export const getIssueByLabelApi = async (
-  labels: Arrayable<number | string>,
+  labelName: string,
 ): Promise<GithubIssue | null> => {
+  // TODO 迁移到 graphql
+  // await octokit.graphql(graphql`
+  //   query getIssueByLabel(
+  //     $repo: String!
+  //     $owner: String!
+  //     $labelName: String!
+  //   ) {
+  //     repository(owner: $owner, name: $repo) {
+  //       issues(filterBy: { labels: [$labelName] }, first: 1) {
+  //         id
+  //       }
+  //     }
+  //   }
+  // `);
   const { data } = await octokit.rest.issues.listForRepo({
     owner: import.meta.env.GITHUB_OWNER,
     repo: import.meta.env.GITHUB_REPO,
-    labels: (Array.isArray(labels) ? labels : [labels]).join(","),
+    labels: labelName,
     state: "all",
     per_page: 1,
   });
@@ -243,4 +272,90 @@ export const createIssueCommentApi = async (query: {
     },
     created_at: node.createdAt,
   };
+};
+
+export const createIssueLabelApi = async (labelName: string) => {
+  const res = await octokit.graphql<{
+    createLabel: {
+      label: {
+        id: number;
+        name: string;
+      };
+    };
+  }>(
+    `mutation CreateLabel($repoId: ID!, $labelName: String!) {
+      createLabel(input: {
+        repositoryId: $repoId,
+        name: $labelName,
+      }) {
+        label {
+          id,
+          name,
+        }
+      }
+    }`,
+    {
+      repoId: import.meta.env.GITHUB_REPO_ID,
+      labelName,
+    },
+  );
+  return res.createLabel.label;
+};
+
+export const getIssueLabelApi = async (labelName: string) => {
+  const res = await octokit.graphql<{
+    repository: {
+      label?: {
+        id: number;
+        name: string;
+      };
+    };
+  }>(
+    `query getIssueLabel(
+      $owner: String!,
+      $repo: String!,
+      $labelName: String!,
+    ) {
+      repository(owner: $owner, name: $repo) {
+        label(name: $label) {
+          id,
+          name,
+        }
+      }
+    }
+    `,
+    {
+      owner: import.meta.env.GITHUB_OWNER,
+      repo: import.meta.env.GITHUB_REPO,
+      labelName: labelName,
+    },
+  );
+  return res.repository.label;
+};
+
+export const createIssueApi = async (query: {
+  title: string;
+  body: string;
+  labelName: string;
+}) => {
+  let label = await getIssueLabelApi(query.labelName);
+  if (!label) {
+    label = await createIssueLabelApi(query.labelName);
+  }
+  await octokit.graphql(
+    `mutation CreateIssue($repoId: ID!, $title: String!, $body: String, labelIds: [ID!]) {
+      createIssue(input: {repositoryId: $repoId, title: $title, body: $body, labelIds: $labelIds}) {
+        issue {
+          id
+        }
+      }
+    }`,
+    {
+      repoId: import.meta.env.GITHUB_REPO_ID,
+      title: query.title,
+      body: query.body,
+      labelIds: [label.id],
+    },
+  );
+  return await getIssueByLabelApi(label.name);
 };

@@ -19,7 +19,10 @@ export const useMujikaGitTalkStore = defineStore(
       adminUser: "Dedicatus546",
     });
 
-    const isLogin = computed(() => !!state.accessToken);
+    const isLogin = computed(() => !!(state.accessToken && state.user));
+    const isAuthor = computed(
+      () => isLogin.value && state.user?.login === import.meta.env.GITHUB_OWNER,
+    );
 
     const toLoginAction = () => {
       const { clientId } = options;
@@ -32,6 +35,7 @@ export const useMujikaGitTalkStore = defineStore(
       state,
       options,
       isLogin,
+      isAuthor,
       toLoginAction,
     };
   },
