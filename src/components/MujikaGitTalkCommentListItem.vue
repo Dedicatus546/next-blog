@@ -31,7 +31,7 @@ defineProps<{
       <div>
         <div>{{ comment.user.login }}</div>
         <div text-sm text="[var(--mygo-c-text-2)]">
-          {{ formatRelativeTime(comment.created_at) }}
+          {{ formatRelativeTime(comment.createdAt) }}
         </div>
       </div>
       <div class="haruhikage-doc" v-html="comment.body_html"></div>

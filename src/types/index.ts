@@ -39,8 +39,7 @@ export interface GithubUser {
 }
 
 export interface GithubIssue {
-  id: number;
-  nodeId: string;
+  id: string;
   number: number;
   commentCount: number;
 }
@@ -54,5 +53,5 @@ export interface GithubIssueComment {
     avatar_url: string;
     url: string;
   };
-  created_at: string;
+  createdAt: string;
 }

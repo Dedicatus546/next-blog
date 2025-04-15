@@ -3,6 +3,7 @@ import { vIntersectionObserver } from "@vueuse/components";
 import { useRouteQuery } from "@vueuse/router";
 
 import {
+  createIssueApi,
   createIssueCommentApi,
   getAccessTokenApi,
   getIssueByLabelApi,
@@ -43,7 +44,7 @@ const toLogin = () => {
 const getCommentList = async () => {
   state.loading = true;
   if (!state.issue) {
-    state.issue = await getIssueByLabelApi(post.value.key);
+    state.issue = await getIssueByLabelApi(String(post.value.key));
   }
   if (state.issue) {
     const { list, pageInfo } = await loadIssueCommentListApi({
@@ -70,7 +71,7 @@ const submit = async () => {
   }
   state.submitLoading = true;
   const comment = await createIssueCommentApi({
-    issueNodeId: state.issue!.nodeId,
+    issueNodeId: state.issue!.id,
     content: state.comment,
   });
   state.comment = "";
@@ -78,9 +79,13 @@ const submit = async () => {
   state.submitLoading = false;
 };
 
-const createIssue = () => {
+const createIssue = async () => {
   state.createLoading = true;
-
+  state.issue = await createIssueApi({
+    title: post.value.title,
+    body: `[${post.value.title}](https://next.prohibitorum.top/${post.value.hash})`,
+    labelName: post.value.key + "",
+  });
   state.createLoading = false;
 };
 
@@ -107,7 +112,7 @@ onMounted(async () => {
     mujikaGitTalkStore.state.user === null &&
     mujikaGitTalkStore.state.accessToken
   ) {
-    const res = await getUserInfoApi(mujikaGitTalkStore.state.accessToken);
+    const res = await getUserInfoApi();
     mujikaGitTalkStore.state.user = res;
   }
 
@@ -163,6 +168,7 @@ onMounted(async () => {
             mr-2
             lg:mr-4
             v-if="mujikaGitTalkStore.isAuthor && state.issue === null"
+            :loading="state.createLoading"
             @click="createIssue"
           >
             创建 issue

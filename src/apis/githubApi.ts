@@ -1,8 +1,21 @@
+import gqlmin from "gqlmin";
 import { Octokit } from "octokit";
 
 import type { GithubIssue, GithubIssueComment, GithubUser } from "@/types";
 
+const {
+  GITHUB_REPO: repo,
+  GITHUB_REPO_ID: repoId,
+  GITHUB_OWNER: owner,
+} = import.meta.env;
+
 let octokit = new Octokit();
+
+export const setOctokitAuth = (accessToken: string) => {
+  octokit = new Octokit({
+    auth: accessToken,
+  });
+};
 
 // 一个模板字符串辅助函数，让 octokit.graphql 支持模板字符语法
 const graphql = (
@@ -10,8 +23,9 @@ const graphql = (
   variables?: Record<string, any>,
 ) => {
   return {
-    query: strings[0],
-    variables,
+    query: import.meta.env.DEV ? strings[0] : gqlmin(strings[0]),
+    // query: gqlmin(strings[0]),
+    ...variables,
   };
 };
 
@@ -57,42 +71,51 @@ export const getUserInfoApi = async () => {
   return res.viewer;
 };
 
-export const setOctokitAuth = (accessToken: string) => {
-  octokit = new Octokit({
-    auth: accessToken,
-  });
-};
-
 export const getIssueByLabelApi = async (
   labelName: string,
 ): Promise<GithubIssue | null> => {
-  // TODO 迁移到 graphql
-  // await octokit.graphql(graphql`
-  //   query getIssueByLabel(
-  //     $repo: String!
-  //     $owner: String!
-  //     $labelName: String!
-  //   ) {
-  //     repository(owner: $owner, name: $repo) {
-  //       issues(filterBy: { labels: [$labelName] }, first: 1) {
-  //         id
-  //       }
-  //     }
-  //   }
-  // `);
-  const { data } = await octokit.rest.issues.listForRepo({
-    owner: import.meta.env.GITHUB_OWNER,
-    repo: import.meta.env.GITHUB_REPO,
-    labels: labelName,
-    state: "all",
-    per_page: 1,
-  });
-  if (data.length > 0) {
+  const res = await octokit.graphql<{
+    repository: {
+      issues: {
+        nodes: Array<{
+          id: string;
+          number: number;
+          comments: {
+            totalCount: number;
+          };
+        }>;
+      };
+    };
+  }>(graphql`
+    query getIssueByLabel(
+      $repo: String!
+      $owner: String!
+      $labelName: String!
+    ) {
+      repository(owner: $owner, name: $repo) {
+        issues(filterBy: { labels: [$labelName] }, first: 1) {
+          nodes {
+            id
+            number
+            comments {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+    ${{
+      owner,
+      repo,
+      labelName,
+    }}
+  `);
+  const { nodes } = res.repository.issues;
+  if (nodes.length > 0) {
     return {
-      id: data[0].id,
-      nodeId: data[0].node_id,
-      number: data[0].number,
-      commentCount: data[0].comments,
+      id: nodes[0].id,
+      number: nodes[0].number,
+      commentCount: nodes[0].comments.totalCount,
     };
   }
   return null;
@@ -103,50 +126,87 @@ export const loadIssueCommentListApi = async (query: {
   issueNumber: number;
   pageSize?: number;
 }) => {
-  const res = await octokit.graphql({
-    query: `
-      query getIssueAndComments(
-        $owner: String!,
-        $repo: String!,
-        $id: Int!,
-        $cursor: String,
-        $pageSize: Int!
-      ) {
-        repository(owner: $owner, name: $repo) {
-          issue(number: $id) {
-            title
-            url
-            bodyHTML
-            createdAt
-            comments(last: $pageSize, before: $cursor) {
-              totalCount
-              pageInfo {
-                hasPreviousPage
-                startCursor
+  const res = await octokit.graphql<{
+    repository: {
+      issue: {
+        comments: {
+          pageInfo: {
+            hasPreviousPage: boolean;
+            startCursor: string;
+          };
+          nodes: Array<{
+            id: string;
+            databaseId: number;
+            author: {
+              avatarUrl: string;
+              login: string;
+              url: string;
+            };
+            bodyHTML: string;
+            body: string;
+            createdAt: string;
+            reactions: {
+              totalCount: number;
+              viewerHasReacted: boolean;
+              pageInfo: {
+                hasNextPage: boolean;
+              };
+              nodes: [
+                {
+                  id: string;
+                  databaseId: number;
+                  user: {
+                    login: string;
+                  };
+                },
+              ];
+            };
+          }>;
+        };
+      };
+    };
+  }>(graphql`
+    query getIssueAndComments(
+      $owner: String!
+      $repo: String!
+      $id: Int!
+      $cursor: String
+      $pageSize: Int!
+    ) {
+      repository(owner: $owner, name: $repo) {
+        issue(number: $id) {
+          title
+          url
+          bodyHTML
+          createdAt
+          comments(last: $pageSize, before: $cursor) {
+            totalCount
+            pageInfo {
+              hasPreviousPage
+              startCursor
+            }
+            nodes {
+              id
+              databaseId
+              author {
+                avatarUrl
+                login
+                url
               }
-              nodes {
-                id
-                databaseId
-                author {
-                  avatarUrl
-                  login
-                  url
+              bodyHTML
+              body
+              createdAt
+              reactions(first: 100, content: HEART) {
+                totalCount
+                viewerHasReacted
+                pageInfo {
+                  hasNextPage
                 }
-                bodyHTML
-                body
-                createdAt
-                reactions(first: 100, content: HEART) {
-                  totalCount
-                  viewerHasReacted
-                  pageInfo{
-                    hasNextPage
-                  }
-                  nodes {
-                    id
-                    databaseId
-                    user {
-                      login
-                    }
+                nodes {
+                  id
+                  databaseId
+                  user {
+                    login
                   }
                 }
               }
@@ -154,43 +214,16 @@ export const loadIssueCommentListApi = async (query: {
           }
         }
       }
-    `,
-    operationName: "getIssueAndComments",
-    owner: import.meta.env.GITHUB_OWNER,
-    repo: import.meta.env.GITHUB_REPO,
-    id: query.issueNumber,
-    pageSize: query.pageSize,
-    cursor: query.cursor,
-  });
-  const { nodes, pageInfo } = (res as any).repository.issue.comments;
-  const commentList = nodes as Array<{
-    id: string;
-    databaseId: number;
-    author: {
-      avatarUrl: string;
-      login: string;
-      url: string;
-    };
-    bodyHTML: string;
-    body: string;
-    createdAt: string;
-    reactions: {
-      totalCount: number;
-      viewerHasReacted: boolean;
-      pageInfo: {
-        hasNextPage: boolean;
-      };
-      nodes: [
-        {
-          id: string;
-          databaseId: number;
-          user: {
-            login: string;
-          };
-        },
-      ];
-    };
-  }>;
+    }
+    ${{
+      owner,
+      repo,
+      id: query.issueNumber,
+      pageSize: query.pageSize,
+      cursor: query.cursor,
+    }}
+  `);
+  const { nodes: commentList, pageInfo } = res.repository.issue.comments;
   return {
     pageInfo: {
       cursor: pageInfo.startCursor,
@@ -206,7 +239,7 @@ export const loadIssueCommentListApi = async (query: {
           avatar_url: item.author.avatarUrl,
           url: item.author.url,
         },
-        created_at: item.createdAt,
+        createdAt: item.createdAt,
       };
     }),
   };
@@ -214,53 +247,64 @@ export const loadIssueCommentListApi = async (query: {
 
 export const createIssueCommentApi = async (query: {
   content: string;
-  issueNodeId: GithubIssue["nodeId"];
+  issueNodeId: GithubIssue["id"];
 }): Promise<GithubIssueComment> => {
-  const res = await octokit.graphql({
-    query: `
-      mutation AddCommentToIssue($issueNodeId: ID!, $content: String!) {
-        addComment(input: {
-          subjectId: $issueNodeId,
-          body: $content
-        }) {
-          commentEdge {
-            node {
-              id
-              databaseId
-              author {
-                avatarUrl
-                login
-                url
+  const res = await octokit.graphql<{
+    addComment: {
+      commentEdge: {
+        node: {
+          id: string;
+          author: {
+            avatarUrl: string;
+            login: string;
+            url: string;
+          };
+          bodyHTML: string;
+          body: string;
+          createdAt: string;
+        };
+      };
+    };
+  }>(graphql`
+    mutation AddCommentToIssue($issueNodeId: ID!, $content: String!) {
+      addComment(input: { subjectId: $issueNodeId, body: $content }) {
+        commentEdge {
+          node {
+            id
+            author {
+              avatarUrl
+              login
+              url
+            }
+            bodyHTML
+            body
+            createdAt
+            reactions(first: 100, content: HEART) {
+              totalCount
+              viewerHasReacted
+              pageInfo {
+                hasNextPage
               }
-              bodyHTML
-              body
-              createdAt
-              reactions(first: 100, content: HEART) {
-                totalCount
-                viewerHasReacted
-                pageInfo{
-                  hasNextPage
-                }
-                nodes {
-                  id
-                  databaseId
-                  user {
-                    login
-                  }
+              nodes {
+                id
+                databaseId
+                user {
+                  login
                 }
               }
             }
           }
         }
       }
-    `,
-    operationName: "AddCommentToIssue",
-    owner: import.meta.env.GITHUB_OWNER,
-    repo: import.meta.env.GITHUB_REPO,
-    issueNodeId: query.issueNodeId,
-    content: query.content,
-  });
-  const node = (res as any).addComment.commentEdge.node;
+    }
+    ${{
+      owner,
+      repo,
+      issueNodeId: query.issueNodeId,
+      content: query.content,
+    }}
+  `);
+  const { node } = res.addComment.commentEdge;
   return {
     id: node.id,
     body: node.body,
@@ -270,7 +314,7 @@ export const createIssueCommentApi = async (query: {
       avatar_url: node.author.avatarUrl,
       url: node.author.url,
     },
-    created_at: node.createdAt,
+    createdAt: node.createdAt,
   };
 };
 
@@ -282,23 +326,23 @@ export const createIssueLabelApi = async (labelName: string) => {
         name: string;
       };
     };
-  }>(
-    `mutation CreateLabel($repoId: ID!, $labelName: String!) {
-      createLabel(input: {
-        repositoryId: $repoId,
-        name: $labelName,
-      }) {
+  }>(graphql`
+    mutation CreateLabel($repoId: ID!, $labelName: String!, $color: String!) {
+      createLabel(
+        input: { repositoryId: $repoId, name: $labelName, color: $color }
+      ) {
         label {
-          id,
-          name,
+          id
+          name
         }
       }
-    }`,
-    {
-      repoId: import.meta.env.GITHUB_REPO_ID,
+    }
+    ${{
+      repoId,
       labelName,
-    },
-  );
+      color: "ededed",
+    }}
+  `);
   return res.createLabel.label;
 };
 
@@ -310,29 +354,25 @@ export const getIssueLabelApi = async (labelName: string) => {
         name: string;
       };
     };
-  }>(
-    `query getIssueLabel(
-      $owner: String!,
-      $repo: String!,
-      $labelName: String!,
-    ) {
+  }>(graphql`
+    query getIssueLabel($owner: String!, $repo: String!, $labelName: String!) {
       repository(owner: $owner, name: $repo) {
-        label(name: $label) {
-          id,
-          name,
+        label(name: $labelName) {
+          id
+          name
         }
       }
     }
-    `,
-    {
-      owner: import.meta.env.GITHUB_OWNER,
-      repo: import.meta.env.GITHUB_REPO,
-      labelName: labelName,
-    },
-  );
+    ${{
+      owner,
+      repo,
+      labelName,
+    }}
+  `);
   return res.repository.label;
 };
 
+// TODO 添加另一个 gittalk 标签
 export const createIssueApi = async (query: {
   title: string;
   body: string;
@@ -342,20 +382,35 @@ export const createIssueApi = async (query: {
   if (!label) {
     label = await createIssueLabelApi(query.labelName);
   }
-  await octokit.graphql(
-    `mutation CreateIssue($repoId: ID!, $title: String!, $body: String, labelIds: [ID!]) {
-      createIssue(input: {repositoryId: $repoId, title: $title, body: $body, labelIds: $labelIds}) {
+  /* eslint-disable prettier/prettier */
+  // 这里 prettier 会把 input 的逗号去掉，导致压缩会将参数不正确的拼在一起
+  await octokit.graphql(graphql`
+    mutation CreateIssue(
+      $repoId: ID!
+      $title: String!
+      $body: String
+      $labelIds: [ID!]
+    ) {
+      createIssue(
+        input: {
+          repositoryId: $repoId,
+          title: $title,
+          body: $body,
+          labelIds: $labelIds,
+        }
+      ) {
         issue {
           id
         }
       }
-    }`,
-    {
-      repoId: import.meta.env.GITHUB_REPO_ID,
+    }
+    ${{
+      repoId,
       title: query.title,
       body: query.body,
       labelIds: [label.id],
-    },
-  );
+    }}
+  `);
+  /* eslint-enable prettier/prettier */
   return await getIssueByLabelApi(label.name);
 };
