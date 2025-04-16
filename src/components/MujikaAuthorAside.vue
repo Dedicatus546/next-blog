@@ -4,6 +4,7 @@
   <aside
     class="mujika-aside"
     w="280px"
+    flex-shrink-0
     top-2
     sticky
     max-h="[calc(100vh-var(--spacing)*4)]"
@@ -13,7 +14,9 @@
         <MujikaAuthorAvatar />
         <div flex="~ col" gap-2 items-center>
           <div>Deidactus545</div>
-          <div text="[var(--mygo-c-text-2)]">Index-Librorum-Prohibitorum</div>
+          <div text-center break-all text="[var(--mygo-c-text-2)]">
+            Index-Librorum-Prohibitorum
+          </div>
         </div>
         <MujikaAuthorStatistic />
       </div>
