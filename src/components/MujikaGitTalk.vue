@@ -187,7 +187,24 @@ onMounted(async () => {
     </div>
   </MujikaCard>
   <MujikaCard :padding-level="2">
-    <div py-4 flex items-center justify-center lg:py-8 v-if="state.loading">
+    <div
+      py-4
+      flex
+      items-center
+      justify-center
+      lg:py-8
+      v-if="state.issue === null"
+    >
+      请联系作者创建 issue
+    </div>
+    <div
+      py-4
+      flex
+      items-center
+      justify-center
+      lg:py-8
+      v-else-if="state.loading"
+    >
       <i class="i-ri:loader-2-fill" text-xl animate-spin lg:text-2xl></i>
     </div>
     <div
