@@ -82,10 +82,10 @@
 
   blockquote {
     margin: 16px 0;
-    border-left: 2px solid var(--vp-c-divider);
+    border-left: 4px solid var(--mygo-c-divider);
     padding-left: 16px;
     transition: border-color 0.5s;
-    color: var(--vp-c-text-2);
+    color: var(--mygo-c-text-2);
 
     & > p {
       margin: 0;
