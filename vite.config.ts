@@ -58,7 +58,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vueRouter({
         extensions: [".vue", ".md"],
-        exclude: [resolve(__dirname, "src", "pages", "pages.vue")],
         routesFolder: [
           resolve(__dirname, "src", "pages"),
           resolve(__dirname, env["P9_POST_DIR"]),
