@@ -76,6 +76,7 @@ const submit = async () => {
   });
   state.comment = "";
   state.commentList.unshift(comment);
+  state.pagination.total++;
   state.submitLoading = false;
 };
 
@@ -91,7 +92,7 @@ const createIssue = async () => {
 
 onMounted(async () => {
   if (githubCode.value) {
-    // 拿 accessToken
+    // 从 url query 拿 accessToken
     const res = await getAccessTokenApi({
       code: githubCode.value,
       clientId: mujikaGitTalkStore.options.clientId,
@@ -185,13 +186,19 @@ onMounted(async () => {
       </div>
     </div>
   </MujikaCard>
-  <MujikaCard :padding-level="2" v-if="state.commentList.length > 0">
-    <div flex="~ col" gap-8>
+  <MujikaCard :padding-level="2">
+    <div flex items-center justify-center v-if="state.commentList.length === 0">
+      哦呢该，如果没有评论的话，瓦达西...
+    </div>
+    <div flex="~ col" gap-8 v-else>
       <MujikaGitTalkCommentListItem
         v-for="comment of state.commentList"
         :key="comment.id"
         :comment="comment"
       />
+    </div>
+    <div py-4 flex items-center justify-center lg:py-8 v-if="state.loading">
+      <i class="i-ri:loader-2-fill" text-xl animate-spin lg:text-2xl></i>
     </div>
     <div
       v-if="state.commentList.length < state.pagination.total"
@@ -202,14 +209,7 @@ onMounted(async () => {
           threshold: [1],
         },
       ]"
-    >
-      <!-- <MujikaPagination
-        :page="mujikaGitTalkStore.state.pagination.page"
-        :page-size="mujikaGitTalkStore.state.pagination.pageSize"
-        :total="mujikaGitTalkStore.state.pagination.total"
-        @page-change="onPageChange"
-      /> -->
-    </div>
+    ></div>
   </MujikaCard>
 </template>
 
