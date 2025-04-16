@@ -187,7 +187,15 @@ onMounted(async () => {
     </div>
   </MujikaCard>
   <MujikaCard :padding-level="2">
-    <div flex items-center justify-center v-if="state.commentList.length === 0">
+    <div py-4 flex items-center justify-center lg:py-8 v-if="state.loading">
+      <i class="i-ri:loader-2-fill" text-xl animate-spin lg:text-2xl></i>
+    </div>
+    <div
+      flex
+      items-center
+      justify-center
+      v-else-if="state.commentList.length === 0"
+    >
       哦呢该，如果没有评论的话，瓦达西...
     </div>
     <div flex="~ col" gap-8 v-else>
@@ -196,9 +204,6 @@ onMounted(async () => {
         :key="comment.id"
         :comment="comment"
       />
-    </div>
-    <div py-4 flex items-center justify-center lg:py-8 v-if="state.loading">
-      <i class="i-ri:loader-2-fill" text-xl animate-spin lg:text-2xl></i>
     </div>
     <div
       v-if="state.commentList.length < state.pagination.total"
