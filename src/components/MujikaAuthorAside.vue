@@ -11,9 +11,11 @@
   >
     <MujikaCard :has-padding="false" px-4 py-8>
       <div flex="~ col" gap-4 items-center>
-        <MujikaAuthorAvatar />
+        <MujikaAuthorAvatar w-120px />
         <div flex="~ col" gap-2 items-center>
-          <div>Deidactus545</div>
+          <RouterLink to="/about">
+            <div>Deidactus545</div>
+          </RouterLink>
           <div text-center break-all text="[var(--mygo-c-text-2)]">
             Index-Librorum-Prohibitorum
           </div>
