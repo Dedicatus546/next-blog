@@ -2,6 +2,7 @@ import { readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { type EditableTreeNode } from "unplugin-vue-router";
+import { PageType } from "../src/types";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -17,7 +18,8 @@ export const insertPageRoutes = (
     const node = root.insert(`/pages/${i}`, "/src/pages/index.vue");
     node.addToMeta({
       page: {
-        type: "",
+        title: `第 ${i} 页`,
+        type: PageType.PAGINATION,
       },
     });
   }

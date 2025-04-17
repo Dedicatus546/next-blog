@@ -7,6 +7,24 @@ import grayMatter from "gray-matter";
 import { MarkdownPage, PageType } from "../src/types";
 import { type MarkdownItAsync } from "markdown-it-async";
 
+const pageMetaMap: Record<string, { title: string }> = {
+  index: {
+    title: "",
+  },
+  about: {
+    title: "关于",
+  },
+  category: {
+    title: "分类",
+  },
+  tag: {
+    title: "标签",
+  },
+  archive: {
+    title: "归档",
+  },
+};
+
 // TODO SHA1 hash of filename (same as :title) and date (12-hexadecimal)
 export const buildRouteMeta = async (
   route: EditableTreeNode,
@@ -50,6 +68,7 @@ export const buildRouteMeta = async (
   } else {
     route.addToMeta({
       page: {
+        ...pageMetaMap[filename],
         type: route.name.slice(1),
       },
     });

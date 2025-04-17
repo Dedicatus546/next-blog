@@ -16,7 +16,6 @@ import { setupRouterScroller } from "vue-router-better-scroller";
 
 import App from "./App.vue";
 import pinia from "./stores";
-import { type MarkdownPage, PageType } from "./types";
 
 console.log("routes", routes);
 
@@ -50,9 +49,7 @@ export const createApp = ViteSSG(
 
       router.beforeEach((to) => {
         const { page } = to.meta;
-        if (page.type === PageType.MD) {
-          document.title = (page as MarkdownPage).title + " | 恋の歌";
-        }
+        document.title = (page.title ? `${page.title} - ` : "") + "恋の歌";
         NProgress.start();
       });
       router.afterEach(() => {

@@ -3,11 +3,15 @@ export enum PageType {
   TAG = "tag",
   ARCHIVE = "archive",
   INDEX = "index",
+  PAGINATION = "pagination",
 }
 
-export interface MarkdownPage {
-  path: string;
+export interface BasePage {
   title: string;
+}
+
+export interface MarkdownPage extends BasePage {
+  path: string;
   excerpt: string;
   top: number;
   wordCount: number;
@@ -20,17 +24,11 @@ export interface MarkdownPage {
   type: PageType.MD;
 }
 
-export interface IndexPage {
-  type: PageType.INDEX;
-  todo: unknown;
+export interface CustomPage extends BasePage {
+  type: Omit<PageType, PageType.MD>;
 }
 
-// TODO
-export interface OtherPage {
-  type: PageType;
-}
-
-export type Page = IndexPage | MarkdownPage | OtherPage;
+export type Page = MarkdownPage | CustomPage;
 
 export interface GithubUser {
   login: string;

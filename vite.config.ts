@@ -93,10 +93,10 @@ export default defineConfig(({ mode }) => {
       }),
       markdown({
         wrapperClasses: "kan-doc",
-        headEnabled: true,
-        exportFrontmatter: true,
-        exposeFrontmatter: true,
-        exposeExcerpt: true,
+        // headEnabled: true,
+        // exportFrontmatter: true,
+        // exposeFrontmatter: true,
+        // exposeExcerpt: true,
         markdownItOptions: {
           quotes: "\"\"''",
         },
