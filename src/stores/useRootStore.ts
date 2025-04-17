@@ -87,17 +87,16 @@ export const useRootStore = defineStore("root-store", () => {
 
   const archiveList = computed(() => {
     return Object.entries(
-      Object.groupBy(state.list, (item) =>
-        format(fromUnixTime(item.date), "yyyy年MM月"),
+      Object.groupBy(
+        state.list.slice().sort((i1, i2) => i2.date - i1.date),
+        (item) => format(fromUnixTime(item.date), "yyyy年MM月"),
       ),
-    )
-      .map(([month, list]) => {
-        return {
-          month,
-          list: list ?? [],
-        };
-      })
-      .reverse();
+    ).map(([month, list]) => {
+      return {
+        month,
+        list: list ?? [],
+      };
+    });
   });
 
   const onPageChange = (page: number) => {

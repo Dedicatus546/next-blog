@@ -37,7 +37,7 @@ const { store: colorMode } = useColorMode();
         <i class="i-logos:github-icon"></i>
       </a>
     </div> -->
-    <div>
+    <div flex gap-2 items-center lg:gap-4>
       <MujikaRadio v-model:model-value="colorMode">
         <MujikaRadioItem value="auto" title="自动">Auto</MujikaRadioItem>
         <MujikaRadioItem value="light" title="日间">
@@ -47,6 +47,10 @@ const { store: colorMode } = useColorMode();
           <i class="i-ri:moon-line"></i>
         </MujikaRadioItem>
       </MujikaRadio>
+      <RouterLink to="/archive">
+        <i class="i-mi:archive"></i>
+        归档
+      </RouterLink>
     </div>
   </header>
 </template>
