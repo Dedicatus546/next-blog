@@ -228,7 +228,7 @@
     position: relative;
     z-index: 1;
     margin: 0;
-    --uno: p-2 lg:p-4;
+    --uno: p-3;
     overflow-x: auto;
     border: 1px solid var(--mygo-c-border);
     border-radius: var(--mygo-border-radius-small);
@@ -245,6 +245,10 @@
         color: var(--s-dark);
       }
     }
+  }
+
+  pre.shiki.shiki-themes + pre.shiki.shiki-themes {
+    --uno: mt-3;
   }
 
   // [class*="language-"] {
