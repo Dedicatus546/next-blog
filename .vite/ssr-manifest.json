@@ -1383,14 +1383,14 @@
     "/assets/inter-italic-latin-C2AdPX0b.woff2"
   ],
   "src/components/MujikaAuthorAside.vue": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/components/MujikaAuthorAvatar.vue": [
-    "/assets/MujikaAuthorAvatar-BbzJwCLC.js"
+    "/assets/MujikaAuthorAvatar-QpKYZUKf.js"
   ],
   "src/components/MujikaAuthorStatistic.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/components/MujikaButton.vue": [
@@ -1666,15 +1666,15 @@
     "/assets/inter-italic-latin-C2AdPX0b.woff2"
   ],
   "src/components/MujikaPagination.vue": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/components/MujikaPagination.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/components/MujikaPagination.vue?vue&type=style&index=0&scoped=fa744100&lang.scss": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/components/MujikaPostDetail.vue?vue&type=script&setup=true&lang.ts": [
@@ -1694,7 +1694,7 @@
     "/assets/inter-italic-latin-C2AdPX0b.woff2"
   ],
   "src/components/MujikaPostListItem.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/components/MujikaPostMeta.vue?vue&type=script&setup=true&lang.ts": [
@@ -1874,36 +1874,36 @@
     "/assets/inter-italic-latin-C2AdPX0b.woff2"
   ],
   "src/pages/about.vue": [
-    "/assets/about-C0xz7ud1.js"
+    "/assets/about-BKBvrzIp.js"
   ],
   "src/pages/about.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/about-C0xz7ud1.js"
+    "/assets/about-BKBvrzIp.js"
   ],
   "src/pages/archive.vue": [
-    "/assets/archive-Bw8uO0RS.js"
+    "/assets/archive-B65P6p4Z.js"
   ],
   "src/pages/archive.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/archive-Bw8uO0RS.js"
+    "/assets/archive-B65P6p4Z.js"
   ],
   "src/pages/category.vue": [
-    "/assets/category-Dt41AAW7.js"
+    "/assets/category-DpaZ7MyN.js"
   ],
   "src/pages/category.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/category-Dt41AAW7.js"
+    "/assets/category-DpaZ7MyN.js"
   ],
   "src/pages/index.vue": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/pages/index.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/index-oNUcysKD.js",
+    "/assets/index-D_NHUmZn.js",
     "/assets/index-CEtp8c-g.css"
   ],
   "src/pages/tag.vue": [
-    "/assets/tag-BwoO3L1j.js"
+    "/assets/tag-DA4cLdRR.js"
   ],
   "src/pages/tag.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/tag-BwoO3L1j.js"
+    "/assets/tag-DA4cLdRR.js"
   ],
   "src/stores/index.ts": [
     "/assets/inter-roman-cyrillic-ext-BBPuwvHQ.woff2",
