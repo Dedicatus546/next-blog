@@ -42,11 +42,13 @@ const repoList = [
 
 <template>
   <MujikaCard :padding-level="2">
-    <div flex="~ col" gap-2 items-center lg:gap-4>
-      <MujikaAuthorAvatar w-150px lg:w-200px />
+    <div flex="~ col" lg:flex="row" gap-2 items-center justify-center lg:gap-12>
+      <div class="kan-doc" flex="~ col" items-center>
+        <MujikaAuthorAvatar w-150px lg:w-200px />
+        <h1 text-center mt="2!" lg:mt="4!">Dedicatus545</h1>
+      </div>
       <div class="kan-doc">
-        <h1 text-center mt="0!">Dedicatus545</h1>
-        <h1>关于我</h1>
+        <h1 mt="0!">关于我</h1>
         <p>一个只会写后台管理系统的菜鸟切图仔，随便写写，没有特别的爱好。</p>
         <p>目前在一家<b>外包</b>公司工作，<b>外派</b>到其他公司。</p>
         <p>
