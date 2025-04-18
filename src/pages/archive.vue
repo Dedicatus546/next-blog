@@ -10,13 +10,21 @@ const rootStore = useRootStore();
       <div class="kan-doc">
         <h1 mt="0!">{{ item.month }}</h1>
       </div>
-      <ul flex="~ col" pl-4 list-disc gap-2 lg:gap-4>
-        <li v-for="subItem of item.list" :key="subItem.hash" truncate>
-          <RouterLink :to="subItem.path" :title="subItem.title">
-            {{ subItem.title }}
-          </RouterLink>
-        </li>
-      </ul>
+      <div class="kan-doc">
+        <ul mt="0!">
+          <li v-for="subItem of item.list" :key="subItem.hash">
+            <RouterLink
+              :to="subItem.path"
+              :title="subItem.title"
+              max-w-full
+              block
+              truncate
+            >
+              {{ subItem.title }}
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
     </MujikaCard>
   </div>
 </template>
