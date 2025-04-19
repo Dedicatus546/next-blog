@@ -205,7 +205,7 @@ onMounted(async () => {
       items-center
       justify-center
       lg:py-8
-      v-else-if="state.loading"
+      v-else-if="state.loading && state.commentList.length === 0"
     >
       <i class="i-ri:loader-2-fill" text-xl animate-spin lg:text-2xl></i>
     </div>
